@@ -1,5 +1,6 @@
 local M = {
     "freddiehaddad/feline.nvim",
+    enabled = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "lewis6991/gitsigns.nvim",
