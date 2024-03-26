@@ -39,7 +39,7 @@ local function iconify(icon, component, highlight)
         {
             provider = '',
             hl = function(self)
-                return { fg = load_highlight(self).fg }
+                return { fg = load_highlight(self).fg, bg = false }
             end,
         },
         {
@@ -50,19 +50,19 @@ local function iconify(icon, component, highlight)
         },
         {
             provider = ' ',
-            hl = { bg = 'base' }
+            hl = { bg = 'crust' }
         },
         {
             hl = function(self)
                 local hl = load_highlight(self)
-                hl.bg = 'base'
+                hl.bg = 'crust'
                 return hl
             end,
             component,
         },
         {
             provider = '',
-            hl = { fg = 'base' },
+            hl = { fg = 'crust', bg = false },
         }
     }
 end
@@ -397,7 +397,7 @@ local Tab = {
     { -- round corner
         provider = '',
         hl = function(self)
-            return { fg = self.bg }
+            return { fg = self.bg, bg = false }
         end,
     },
     { -- file type icon
@@ -462,12 +462,11 @@ local Tab = {
 
     },
     {
-        provider = '',
+        provider = ' ',
         hl = function(self)
-            return { fg = self.bg }
+            return { fg = self.bg, bg = false }
         end,
     },
-    Space
 }
 
 -- this is the default function used to retrieve buffers
