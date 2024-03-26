@@ -6,6 +6,7 @@ local M = {
         "hrsh7th/nvim-cmp",
         "folke/neodev.nvim",
     },
+    event = { 'BufReadPre', 'BufNewFile' },
 }
 
 local function on_attach(_, _)
