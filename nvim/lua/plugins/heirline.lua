@@ -5,8 +5,12 @@ local M = {
         "catppuccin/nvim",
         "nvim-tree/nvim-web-devicons",
         "lewis6991/gitsigns.nvim",
+        "SmiteshP/nvim-navic",
     }
 }
+
+
+-- Status Line Components --
 
 --- Iconify the components.
 ---@param icon string|function
@@ -147,6 +151,7 @@ local ViMode = {
 ViMode = iconify(' ', ViMode, function(self) return { fg = self.mode_colors[self.mode], bold = true } end)
 
 table.insert(ViModeBlock, ViMode)
+table.insert(ViModeBlock, Space)
 
 
 -- block: filename with file icon
@@ -181,7 +186,7 @@ local FileName = {
             return not vim.bo.modifiable or vim.bo.readonly
         end,
         provider = " ",
-    }
+    },
 }
 
 FileName = iconify(
@@ -196,6 +201,7 @@ FileName = iconify(
 )
 
 table.insert(FileNameBlock, FileName)
+table.insert(FileNameBlock, Space)
 
 
 -- block: git sign
@@ -243,7 +249,19 @@ local FileEncodingBlock = {
         local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h enc
         return enc:upper()
     end,
-    hl = { fg = 'subtext0' }
+    hl = { fg = 'subtext0' },
+    Space,
+}
+
+
+-- block: file format
+local FileFormatBlock = {
+    provider = function()
+        local fmt = vim.bo.fileformat
+        return fmt:upper()
+    end,
+    hl = { fg = 'subtext0' },
+    Space,
 }
 
 
@@ -291,6 +309,7 @@ local DiagnosticBlock = {
         end,
         hl = { fg = "teal" },
     },
+    Space,
 }
 
 
@@ -315,6 +334,7 @@ local Lsp = {
 Lsp = iconify(' ', Lsp, "green")
 
 table.insert(LspBlock, Lsp)
+table.insert(LspBlock, Space)
 
 
 -- block: position with icon
@@ -325,6 +345,43 @@ local RulerBlock = {
 
 RulerBlock = iconify(' ', RulerBlock, 'yellow')
 
+
+-- Winbar --
+local winbar = {
+    fallthrough = false,
+    init = function(self)
+        self.filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+        local ext = vim.fn.fnamemodify(self.filename, ":e")
+        self.icon, _ = require("nvim-web-devicons").get_icon_color(self.filename, ext, { default = true })
+    end,
+    static = {
+        seperator = ' > ',
+    },
+    condition = function()
+        return require("heirline.conditions").is_active()
+    end,
+    provider = function(self)
+        local breadcrumb = ''
+
+        if self.filename then
+            breadcrumb = self.icon .. ' ' .. self.filename
+        else
+            breadcrumb = '󰍛 BUF'
+        end
+
+        local navic = require "nvim-navic"
+        if navic.is_available() then
+            local location = navic.get_location()
+            if location and location ~= '' then
+                breadcrumb = breadcrumb .. self.seperator .. location
+            end
+        end
+
+        return breadcrumb
+    end,
+}
+
+
 function M.config(_, _)
     local heirline = require "heirline"
     local conditions = heirline.conditions
@@ -333,14 +390,21 @@ function M.config(_, _)
     local colors = require "catppuccin.palettes.mocha"
 
     local statusline = {
-        ViModeBlock, Space, FileNameBlock, Space, GitBlock, Align,
-        FileEncodingBlock, Space, DiagnosticBlock, Space, LspBlock, Space, RulerBlock
+        ViModeBlock, FileNameBlock, GitBlock, Align,
+        FileEncodingBlock, FileFormatBlock, DiagnosticBlock, LspBlock, RulerBlock
     }
 
     heirline.setup {
         statusline = statusline,
+        winbar = winbar,
         opts = {
             colors = colors,
+            --            disable_winbar_cb = function(args)
+            --                return conditions.buffer_matches({
+            --                    buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
+            --                    filetype = { "^git.*", "fugitive", "Trouble", "dashboard" }
+            --                }, args.buf)
+            --            end,
         }
     }
 end
