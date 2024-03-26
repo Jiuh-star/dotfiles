@@ -384,8 +384,8 @@ local winbar = {
 
 function M.config(_, _)
     local heirline = require "heirline"
-    local conditions = heirline.conditions
-    local utils = heirline.utils
+    local conditions = require "heirline.conditions"
+    local utils = require "heirline.utils"
 
     local colors = require "catppuccin.palettes.mocha"
 
@@ -399,12 +399,12 @@ function M.config(_, _)
         winbar = winbar,
         opts = {
             colors = colors,
-            --            disable_winbar_cb = function(args)
-            --                return conditions.buffer_matches({
-            --                    buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
-            --                    filetype = { "^git.*", "fugitive", "Trouble", "dashboard" }
-            --                }, args.buf)
-            --            end,
+            disable_winbar_cb = function(args)
+                return conditions.buffer_matches({
+                    buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
+                    filetype = { "^git.*", "fugitive", "Trouble", "dashboard" }
+                }, args.buf)
+            end,
         }
     }
 end
