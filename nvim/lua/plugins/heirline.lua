@@ -338,7 +338,7 @@ table.insert(LspBlock, Space)
 
 -- block: position with icon
 local RulerBlock = {
-    provider = "%l/%3L"
+    provider = "%l/%L"
 }
 
 
