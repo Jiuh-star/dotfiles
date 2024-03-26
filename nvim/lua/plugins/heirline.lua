@@ -9,8 +9,7 @@ local M = {
     }
 }
 
-
--- Status Line Components --
+-- Statusline Components --
 
 --- Iconify the components.
 ---@param icon string|function
@@ -167,7 +166,7 @@ local FileName = {
     provider = function(self)
         local conditions = require "heirline.conditions"
 
-        local filename = vim.fn.fnamemodify(self.filename, ":.")
+        local filename = vim.fn.fnamemodify(self.filename, ":~:.")
         if filename == "" then return "[No Name]" end
 
         if not conditions.width_percent_below(#filename, 0.25) then
@@ -350,9 +349,9 @@ RulerBlock = iconify(' ', RulerBlock, 'yellow')
 local winbar = {
     fallthrough = false,
     init = function(self)
-        self.filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":.")
+        self.filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
         local ext = vim.fn.fnamemodify(self.filename, ":e")
-        self.icon, _ = require("nvim-web-devicons").get_icon_color(self.filename, ext, { default = true })
+        self.icon = require("nvim-web-devicons").get_icon(self.filename, ext, { default = true })
     end,
     static = {
         seperator = ' > ',
@@ -363,7 +362,7 @@ local winbar = {
     provider = function(self)
         local breadcrumb = ''
 
-        if self.filename then
+        if self.filename and self.filename ~= '' then
             breadcrumb = self.icon .. ' ' .. self.filename
         else
             breadcrumb = '󰍛 BUF'
@@ -382,6 +381,128 @@ local winbar = {
 }
 
 
+-- Tabline --
+local Tab = {
+    init = function(self)
+        self.filename = vim.api.nvim_buf_get_name(self.bufnr)
+        self.filename = self.filename == '' and '[No Name]' or vim.fn.fnamemodify(self.filename, ':t')
+        local ext = vim.fn.fnamemodify(self.filename, ":e")
+        self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(self.filename, ext, { default = true })
+        self.bg = 'crust'
+    end,
+    hl = function(self)
+        return { bg = self.bg }
+    end,
+
+    { -- round corner
+        provider = '',
+        hl = function(self)
+            return { fg = self.bg }
+        end,
+    },
+    { -- file type icon
+        provider = function(self)
+            return self.icon .. ' '
+        end,
+        hl = function(self)
+            return { fg = self.is_active and self.icon_color or 'subtext0', bg = self.bg }
+        end,
+    },
+    { -- filename, may with readonly icon
+        provider = function(self)
+            local text = self.filename
+
+            if not vim.api.nvim_get_option_value("modifiable", { buf = self.bufnr }) or vim.api.nvim_get_option_value("readonly", { buf = self.bufnr }) then
+                text = text .. ' '
+            end
+
+            return text
+        end,
+        hl = function(self)
+            if self.is_active then
+                return { fg = 'white', bold = true, italic = true, bg = self.bg }
+            else
+                return { fg = 'subtext0', bg = self.bg }
+            end
+        end,
+        on_click = {
+            callback = function(_, minwid, _, _)
+                vim.api.nvim_win_set_buf(0, minwid)
+            end,
+            minwid = function(self)
+                return self.bufnr
+            end,
+            name = 'heirline_tabline_buffer_callback',
+        },
+
+        {      -- when file modified, we display modified icon
+            condition = function(self)
+                return vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
+            end,
+            provider = '  ',
+        },
+        { -- otherwise display close button
+            condition = function(self)
+                return not vim.api.nvim_get_option_value("modified", { buf = self.bufnr })
+            end,
+            provider = '  ',
+            on_click = {
+                callback = function(_, minwid)
+                    vim.schedule(function()
+                        vim.api.nvim_buf_delete(minwid, { force = false })
+                        vim.cmd.redrawtabline()
+                    end)
+                end,
+                minwid = function(self)
+                    return self.bufnr
+                end,
+                name = "heirline_tabline_close_buffer_callback",
+            },
+        },
+
+    },
+    {
+        provider = '',
+        hl = function(self)
+            return { fg = self.bg }
+        end,
+    },
+    Space
+}
+
+-- this is the default function used to retrieve buffers
+local get_bufs = function()
+    return vim.tbl_filter(function(bufnr)
+        return vim.api.nvim_get_option_value("buflisted", { buf = bufnr })
+    end, vim.api.nvim_list_bufs())
+end
+
+-- initialize the buflist cache
+local buflist_cache = {}
+
+-- setup an autocmd that updates the buflist_cache every time that buffers are added/removed
+vim.api.nvim_create_autocmd({ "VimEnter", "UIEnter", "BufAdd", "BufDelete" }, {
+    callback = function()
+        vim.schedule(function()
+            local buffers = get_bufs()
+            for i, v in ipairs(buffers) do
+                buflist_cache[i] = v
+            end
+            for i = #buffers + 1, #buflist_cache do
+                buflist_cache[i] = nil
+            end
+
+            -- check how many buffers we have and set showtabline accordingly
+            if #buflist_cache > 1 then
+                vim.o.showtabline = 2 -- always
+            elseif vim.o.showtabline ~= 1 then -- don't reset the option if it's already at default value
+                vim.o.showtabline = 1 -- only when #tabpages > 1
+            end
+        end)
+    end,
+})
+
+
 function M.config(_, _)
     local heirline = require "heirline"
     local conditions = require "heirline.conditions"
@@ -394,9 +515,22 @@ function M.config(_, _)
         FileEncodingBlock, FileFormatBlock, DiagnosticBlock, LspBlock, RulerBlock
     }
 
+    local tabline = utils.make_buflist(
+        Tab,
+        { provider = "", hl = { fg = "gray" } },
+        { provider = "", hl = { fg = "gray" } },
+        -- out buf_func simply returns the buflist_cache
+        function()
+            return buflist_cache
+        end,
+        -- no cache, as we're handling everything ourselves
+        false
+    )
+
     heirline.setup {
         statusline = statusline,
         winbar = winbar,
+        tabline = tabline,
         opts = {
             colors = colors,
             disable_winbar_cb = function(args)
