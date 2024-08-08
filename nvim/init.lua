@@ -1,4 +1,2 @@
-require "options"  -- neovim options
-require "neovide"  -- gui
-require "lazynvim"  -- plugin manager
-
+require('config.options')
+require('config.lazy')
