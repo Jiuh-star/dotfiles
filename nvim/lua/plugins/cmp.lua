@@ -6,6 +6,7 @@ return {
             'zbirenbaum/copilot-cmp',
             'onsails/lspkind.nvim',
         },
+        event = { "InsertEnter", "CmdlineEnter" },
         opts = function()
             local cmp = require('cmp')
             local lspkind = require('lspkind')
@@ -20,12 +21,12 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
+                -- default preset has <Up>, <Down>, <C-p>, <C-n>, <C-y>, <C-e>
                 mapping = cmp.mapping.preset.insert({
+                    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
                     { name = 'copilot',  group_index = 2 },
