@@ -373,8 +373,15 @@ return {
 
         local statusline = {
             hl = { fg = 'bright_fg', bg = false },
-            ViModeBlock, FileNameBlock, GitBlock, Align,
-            FileEncodingBlock, FileFormatBlock, DiagnosticBlock, LspBlock, RulerBlock
+            ViModeBlock,
+            FileNameBlock,
+            GitBlock,
+            Align,
+            FileEncodingBlock,
+            FileFormatBlock,
+            DiagnosticBlock,
+            LspBlock,
+            RulerBlock
         }
 
         vim.api.nvim_create_augroup('Heirline', { clear = true })
