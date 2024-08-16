@@ -11,6 +11,9 @@ return {
             'checkhealth',
             'lspinfo',
             'noice',
+        },
+        custom_colorcolumn = {
+            python = "120",
         }
     },
 }
