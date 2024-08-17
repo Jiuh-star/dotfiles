@@ -38,3 +38,4 @@ opt.hidden = false
 opt.undofile = true
 opt.updatetime = 4000
 
+vim.g.loaded_python3_provider = 0
