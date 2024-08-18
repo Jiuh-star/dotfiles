@@ -1,5 +1,6 @@
 return {
     'mhartington/formatter.nvim',
+    cmd = { 'Format', 'FormatLock', 'FormatWrite', 'FormatWriteLock' },
     opts = function()
         return {
             filetype = {

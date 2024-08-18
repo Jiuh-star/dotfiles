@@ -332,6 +332,7 @@ RulerBlock = iconify(' ', RulerBlock, 'ruler')
 
 return {
     'rebelot/heirline.nvim',
+    events = 'VeryLazy',
     dependencies = {
         'catppuccin/nvim',
         'nvim-tree/nvim-web-devicons',

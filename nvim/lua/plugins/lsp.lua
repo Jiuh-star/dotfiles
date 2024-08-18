@@ -8,6 +8,7 @@ return {
     },
     {
         'williamboman/mason-lspconfig.nvim',
+        event = { 'UIEnter' },
         opts = {
             ensure_installed = { 'lua_ls', 'rust_analyzer', 'ruff', 'basedpyright' },
             automatic_installation = true,
@@ -47,7 +48,7 @@ return {
                 ['basedpyright'] = function()
                     lspconfig.pyright.setup {
                         settings = {
-                            pyright = {  disableOrganizeImports = true },
+                            pyright = { disableOrganizeImports = true },
                         },
                         python = {
                             analysis = {

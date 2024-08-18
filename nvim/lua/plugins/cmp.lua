@@ -6,7 +6,7 @@ return {
             'zbirenbaum/copilot-cmp',
             'onsails/lspkind.nvim',
         },
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = { 'InsertEnter', 'CmdlineEnter' },
         opts = function()
             local cmp = require('cmp')
             local lspkind = require('lspkind')
