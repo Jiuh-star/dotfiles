@@ -37,5 +37,6 @@ opt.clipboard = 'unnamedplus'
 opt.hidden = false
 opt.undofile = true
 opt.updatetime = 4000
+opt.mousemodel = 'extend'
 
 vim.g.loaded_python3_provider = 0
