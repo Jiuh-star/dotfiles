@@ -40,6 +40,7 @@ return {
             'vimdoc',
             'xml',
             'yaml',
+            'comment',
         },
         incremental_selection = {
             enable = true,
