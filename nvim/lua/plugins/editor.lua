@@ -1,8 +1,15 @@
 return {
-  { "lewis6991/gitsigns.nvim", lazy = false, opts = {} },
+  {
+    "lewis6991/gitsigns.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    opts = {}
+  },
 
   {
     "saghen/blink.cmp",
+    lazy = true,
+    event = "VeryLazy",
     version = "*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config

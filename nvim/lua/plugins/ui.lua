@@ -26,6 +26,7 @@ return {
     "rebelot/heirline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
+    event = "VeryLazy",
     opts = {
       statusline = { "mode", "file", "git", "align", "encoding", "diagnostic", "lsp", "cursor" },
     },
@@ -57,4 +58,11 @@ return {
       vim.cmd.colorscheme("catppuccin")
     end,
   },
+
+  -- unintrusive norifications
+  {
+    "j-hui/fidget.nvim",
+    event = "VeryLazy",
+    opts = {}
+  }
 }

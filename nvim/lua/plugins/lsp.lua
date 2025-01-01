@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = "VeryLazy",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
@@ -51,7 +51,7 @@ return {
         },
         servers = {
           lua_ls = {},
-          pylyzer = {},
+          basedpyright = {}
         },
       }
     end,
@@ -72,6 +72,8 @@ return {
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
       end
+
+      vim.cmd("LspStart")
     end,
   },
 
@@ -97,6 +99,7 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
+    cmd = "LazyDev",
     opts = {
       library = {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
