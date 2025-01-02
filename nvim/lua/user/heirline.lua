@@ -296,21 +296,25 @@ M.lsp = bubble({
 
   init = function(self)
     local names = {}
-    self.copilot = false
+    self.copilot_icon = false
 
     for _, server in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
       if server.name == "copilot" then
-        self.copilot = true
+        self.copilot_icon = true
       else
         table.insert(names, server.name)
       end
+    end
+
+    if #names == 1 then
+      self.copilot_icon = false
     end
 
     self.names = names
   end,
 
   icon = function(self)
-    return self.copilot and icons.copilot or icons.lsp
+    return self.copilot_icon and icons.copilot or icons.lsp
   end,
 
   provider = function(self)
