@@ -99,7 +99,7 @@ end
 
 -- store global variables
 local global = {
-  hl = function(self)
+  hl = function()
     if conditions.is_active() then
       return { fg = "text", bg = "none" }
     else
@@ -295,24 +295,26 @@ M.lsp = bubble({
   update = { "LspAttach", "LspDetach" },
 
   init = function(self)
-    self.has_copilot = false
-  end,
-
-  icon = function(self)
-    return self.has_copilot and icons.copilot or icons.lsp
-  end,
-
-  provider = function(self)
     local names = {}
-    for _, server in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      table.insert(names, server.name)
+    self.copilot = false
 
+    for _, server in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
       if server.name == "copilot" then
-        self.has_copilot = true
+        self.copilot = true
+      else
+        table.insert(names, server.name)
       end
     end
 
-    return table.concat(names, " ")
+    self.names = names
+  end,
+
+  icon = function(self)
+    return self.copilot and icons.copilot or icons.lsp
+  end,
+
+  provider = function(self)
+    return table.concat(self.names, " ")
   end,
 
   hl = { fg = "green" },
@@ -321,7 +323,7 @@ M.lsp = bubble({
 M.cursor = bubble({
   icon = icons.cursor,
 
-  provider = function(self)
+  provider = function()
     local curr_line = vim.api.nvim_win_get_cursor(0)[1]
     local lines = vim.api.nvim_buf_line_count(0)
 
