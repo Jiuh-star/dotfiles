@@ -300,14 +300,17 @@ M.lsp = bubble({
 
     for _, server in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
       if server.name == "copilot" then
+        vim.notify(icons.copilot .. " Copilot is actived", vim.log.levels.INFO)
         self.copilot_icon = true
       else
         table.insert(names, server.name)
       end
     end
 
-    if #names == 1 then
+    -- if only copilot is active, show only copilot
+    if #names == 1 and names[1] == "copilot" then
       self.copilot_icon = false
+      names = { "copilot" }
     end
 
     self.names = names

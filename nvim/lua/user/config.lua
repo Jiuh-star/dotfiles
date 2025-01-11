@@ -13,9 +13,7 @@ return {
     diagnostics_hint = "󰛩",
     diagnostics_info = "󰋼",
     cwd = "",
-    cursor = "",
-    lsp_progress = { "", "", "", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
+    cursor = "󰦨",
     separator = { left = "", right = "" },
   },
-  statusline_order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
 }
