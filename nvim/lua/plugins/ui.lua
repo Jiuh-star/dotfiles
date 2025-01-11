@@ -62,12 +62,15 @@ return {
   -- unintrusive norifications
   {
     "j-hui/fidget.nvim",
-    lazy = false,
-    -- event = "VeryLazy",
+    event = "VeryLazy",
+    priority = 1000,
     opts = {
       notification = {
         override_vim_notify = true,
       }
-    }
+    },
+    config = function(_, opts)
+      require("fidget").setup(opts)
+    end,
   }
 }
