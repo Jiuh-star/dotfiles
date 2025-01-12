@@ -65,5 +65,12 @@ return {
     config = function(_, opts)
       require("fidget").setup(opts)
     end,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    opts = {}
   }
 }

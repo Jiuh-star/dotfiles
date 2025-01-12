@@ -24,7 +24,7 @@ opt.title = true
 opt.expandtab = true
 opt.softtabstop = 4
 opt.shiftwidth = 4
-opt.smartindent = true
+opt.smartindent = false
 
 -- Search
 opt.ignorecase = true

@@ -4,6 +4,7 @@ return {
     "stevearc/conform.nvim",
     opts = {},
   },
+
   --treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -49,7 +50,7 @@ return {
         "meson",
         "gitcommit",
         "gitignore",
-        "comment",
+        -- "comment",
         "caddy",
       },
     },
@@ -72,4 +73,28 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end
   },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = function(_, opts)
+      Snacks.toggle.new({
+        id = "treesitter-context",
+        name = "Treesitter Context",
+        get = function()
+          return require("treesitter-context").enabled()
+        end,
+        set = function(state)
+          local context = require("treesitter-context")
+          if state then
+            context.enable()
+          else
+            context.disable()
+          end
+        end,
+      }):map("<leader>uc")
+      return opts or {}
+    end,
+  }
 }

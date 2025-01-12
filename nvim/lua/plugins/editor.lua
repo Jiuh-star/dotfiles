@@ -64,4 +64,17 @@ return {
       signature = { enabled = true, window = { border = "rounded" } },
     },
   },
+
+  {
+    "NMAC427/guess-indent.nvim",
+    event = { "VeryLazy", "BufReadPost" },
+    opts = {},
+  },
+
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
+    opts = {}
+  }
 }
