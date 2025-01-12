@@ -2,13 +2,6 @@ return {
   { "akinsho/bufferline.nvim" },
 
   {
-    "folke/which-key.nvim",
-    opts = {
-      preset = "helix",
-    },
-  },
-
-  {
     "echasnovski/mini.icons",
     lazy = true,
     specs = {

@@ -102,6 +102,9 @@ return {
     cmd = "LazyDev",
     opts = {
       library = {
+        "lazy.nvim",
+        "snacks.nvim",
+        "which-key.nvim",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },

@@ -7,6 +7,19 @@ return {
   },
 
   {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    ---@type wk.Opts
+    opts = {
+      preset = "helix",
+      spec = {
+        mode = { "n", "v" },
+        { "<leader>u", group = "UI", icon = { icon = "󰃣 ", color = "cyan" } }
+      }
+    },
+  },
+
+  {
     "saghen/blink.cmp",
     lazy = true,
     event = "VeryLazy",
