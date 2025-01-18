@@ -19,30 +19,26 @@ return {
       dim = { enabled = true },
       gitbrowse = { enabled = true },
     },
-    init = function()
+    config = function(_, opts)
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
-          _G.dd = function(...)  ---@diagnostic disable-line:duplicate-set-field
-            Snacks.debug(...)
-          end
-          _G.bt = function()  ---@diagnostic disable-line:duplicate-set-field
-            Snacks.debug.backtrace()
-          end
-          vim.print = _G.dd
+          local toggle = Snacks.toggle
+          local keymaps = vim.g.keymaps.ui
 
-          Snacks.toggle.dim():map("<leader>uD")
-          Snacks.toggle.indent():map("<leader>ui")
-          Snacks.toggle.inlay_hints():map("<leader>uh")
-          Snacks.toggle.treesitter():map("<leader>ut")
-          Snacks.toggle.diagnostics():map("<leader>ud")
-          Snacks.toggle.line_number():map("<leader>ul")
-          Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
-          Snacks.toggle.option("wrap", { name = "Wrap line" }):map("<leader>uw")
-
-          Snacks.toggle.dim():set(true)
+          toggle.dim():map(keymaps.dim)
+          toggle.indent():map(keymaps.indent)
+          toggle.inlay_hints():map(keymaps.inlay_hints)
+          toggle.treesitter():map(keymaps.treesitter)
+          toggle.diagnostics():map(keymaps.diagnostics)
+          toggle.line_number():map(keymaps.line_number)
+          toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(keymaps.background)
+          toggle.option("wrap", { name = "Wrap line" }):map(keymaps.wrap)
         end
       })
-    end
+
+
+      require("snacks").setup(opts)
+    end,
   }
 }

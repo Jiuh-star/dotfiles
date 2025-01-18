@@ -3,7 +3,22 @@ return {
     "lewis6991/gitsigns.nvim",
     lazy = true,
     event = "VeryLazy",
-    opts = {}
+    opts = {},
+    config = function(_, opts)
+      local gitsigns = require("gitsigns")
+      gitsigns.setup(opts)
+
+      Snacks.toggle.new({
+        id = "gitsigns_blame_line",
+        name = "Blame Line",
+        get = function()
+          return require("gitsigns.config").config.current_line_blame
+        end,
+        set = function(value)
+          gitsigns.toggle_current_line_blame(value)
+        end,
+      }):map(vim.g.keymaps.git.blame_line)
+    end,
   },
 
   {
@@ -14,7 +29,8 @@ return {
       preset = "helix",
       spec = {
         mode = { "n", "v" },
-        { "<leader>u", group = "UI", icon = { icon = "󰃣 ", color = "cyan" } }
+        { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
+        { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
       }
     },
   },
@@ -76,5 +92,11 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
     opts = {}
-  }
+  },
+
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
 }
