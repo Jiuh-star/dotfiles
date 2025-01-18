@@ -98,6 +98,9 @@ return {
   -- dev for NeoVim
   {
     "folke/lazydev.nvim",
+    dependencies = {
+      "LelouchHe/xmake-luals-addon",
+    },
     ft = "lua",
     cmd = "LazyDev",
     opts = {
@@ -106,6 +109,7 @@ return {
         "snacks.nvim",
         "which-key.nvim",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { "xmake-luals-addon/library", file = { "xmake.lua"} },
       },
     },
   },
