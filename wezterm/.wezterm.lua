@@ -31,7 +31,7 @@ if ok then
     config.xcursor_theme = stdout:gsub("'(.+)'\n", "%1")
 end
 
-local ok, stdout, _ = wezterm.run_child_process({"gsettings", "get", "org.gnome.desktop.interface", "cursor-size"})
+ok, stdout, _ = wezterm.run_child_process({"gsettings", "get", "org.gnome.desktop.interface", "cursor-size"})
 if ok then
   config.xcursor_size = tonumber(stdout)
 end
