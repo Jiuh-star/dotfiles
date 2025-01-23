@@ -99,4 +99,13 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    -- event = "VeryLazy",
+    cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+    version = "*",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+  }
 }
