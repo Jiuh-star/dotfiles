@@ -42,6 +42,7 @@ opt.undofile = true
 opt.backup = true
 opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 opt.mousescroll = "ver:1,hor:6"
+opt.showmode = false
 
 -- Performance
 g.loaded_python3_provider = 0

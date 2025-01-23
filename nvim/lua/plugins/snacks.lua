@@ -23,17 +23,22 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
+          local wk = require("which-key")
           local toggle = Snacks.toggle
-          local keymaps = vim.g.keymaps.ui
+          local keymaps = vim.g.keymaps
 
-          toggle.dim():map(keymaps.dim)
-          toggle.indent():map(keymaps.indent)
-          toggle.inlay_hints():map(keymaps.inlay_hints)
-          toggle.treesitter():map(keymaps.treesitter)
-          toggle.diagnostics():map(keymaps.diagnostics)
-          toggle.line_number():map(keymaps.line_number)
-          toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(keymaps.background)
-          toggle.option("wrap", { name = "Wrap line" }):map(keymaps.wrap)
+          toggle.dim():map(keymaps.ui.dim)
+          toggle.indent():map(keymaps.ui.indent)
+          toggle.inlay_hints():map(keymaps.ui.inlay_hints)
+          toggle.treesitter():map(keymaps.ui.treesitter)
+          toggle.diagnostics():map(keymaps.ui.diagnostics)
+          toggle.line_number():map(keymaps.ui.line_number)
+          toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(keymaps.ui.background)
+          toggle.option("wrap", { name = "Wrap line" }):map(keymaps.ui.wrap)
+
+          wk.add({ keymaps.git.lazygit, function() Snacks.lazygit() end, desc = "LazyGit", icon = " " })
+
+          vim.api.nvim_create_user_command("LazyGit", function () Snacks.lazygit() end, {})
         end
       })
 

@@ -5,6 +5,7 @@ local M = {
   },
   git = {
     blame_line = "<leader>gb",
+    lazygit = "<leader>gl",
   },
   ui = {
     dim = "<leader>uD",
