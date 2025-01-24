@@ -8,41 +8,41 @@ g.maplocalleader = "\\"
 g.catppuccin_flavour = "mocha" -- mocha, frappe, latte, macchiato
 
 -- Interface
-opt.cursorline = true
-opt.laststatus = 3
-opt.number = true
-opt.relativenumber = true
-opt.sidescrolloff = 8
-opt.scrolloff = 8
-opt.signcolumn = "yes"
-opt.splitbelow = true
-opt.splitright = true
-opt.termguicolors = true
-opt.title = true
+o.cursorline = true
+o.laststatus = 3
+o.number = true
+o.relativenumber = true
+o.sidescrolloff = 8
+o.scrolloff = 8
+o.signcolumn = "yes"
+o.splitbelow = true
+o.splitright = true
+o.termguicolors = true
+o.title = true
 
 -- Indentation
-opt.expandtab = true
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.smartindent = false
+o.expandtab = true
+o.softtabstop = 4
+o.shiftwidth = 4
+o.smartindent = false
 
 -- Search
-opt.ignorecase = true
-opt.smartcase = true
+o.ignorecase = true
+o.smartcase = true
 
 -- Completion
 opt.completeopt = { "menu", "noselect" }
-opt.pumheight = 10
+o.pumheight = 10
 
 -- Behavior
-opt.clipboard = "unnamedplus"
-opt.hidden = false
-opt.updatetime = 4000
-opt.undofile = true
-opt.backup = true
+o.clipboard = "unnamedplus"
+o.hidden = false
+o.updatetime = 4000
+o.undofile = true
+o.backup = true
 opt.backupdir = vim.fn.stdpath("state") .. "/backup"
-opt.mousescroll = "ver:1,hor:6"
-opt.showmode = false
+o.mousescroll = "ver:1,hor:6"
+o.showmode = false
 
 -- Performance
 g.loaded_python3_provider = 0
