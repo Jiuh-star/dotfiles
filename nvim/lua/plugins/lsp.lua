@@ -109,6 +109,7 @@ return {
         "snacks.nvim",
         "which-key.nvim",
         "bufferline.nvim",
+        "conform.nvim",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { "xmake-luals-addon/library", file = { "xmake.lua"} },
         { "gonstoll/wezterm-types", file = { ".wezterm.lua" } },

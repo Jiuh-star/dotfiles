@@ -2,7 +2,40 @@ return {
   -- formatters
   {
     "stevearc/conform.nvim",
-    opts = {},
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo", "Format" },
+    ---@module "conform"
+    ---@type conform.setupOpts
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+      },
+      default_format_opts = {
+        lsp_format = "fallback"
+      }
+    },
+    config = function(_, opts)
+      local conform = require("conform")
+      local wk = require("which-key")
+      local keymaps = vim.g.keymaps.language
+
+      vim.api.nvim_create_user_command("Format", function(args)
+        local range = nil
+        if args.count ~= -1 then
+          local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+          range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+          }
+        end
+        conform.format({ async = true, lsp_format = "fallback", range = range })
+      end, { range = true })
+
+      wk.add({ keymaps.format, "Format", desc = "Format Buffer", icon = "󰉢 " })
+
+      require("conform").setup(opts)
+    end
   },
 
   --treesitter
@@ -56,7 +89,7 @@ return {
     },
     ---@param opts TSConfig
     config = function(_, opts)
-      require("nvim-treesitter.parsers").get_parser_configs().caddy = {  ---@diagnostic disable-line
+      require("nvim-treesitter.parsers").get_parser_configs().caddy = { ---@diagnostic disable-line
         install_info = {
           url = "https://github.com/Samonitari/tree-sitter-caddy",
           files = { "src/parser.c", "src/scanner.c" },

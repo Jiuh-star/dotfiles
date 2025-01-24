@@ -31,6 +31,7 @@ return {
         mode = { "n", "v" },
         { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
+        { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } }
       }
     },
   },

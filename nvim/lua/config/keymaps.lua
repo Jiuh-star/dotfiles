@@ -2,6 +2,7 @@ local M = {
   groups = {
     git = "<leader>g",
     ui = "<leader>u",
+    language = "<leader>l",
   },
   git = {
     blame_line = "<leader>gb",
@@ -17,6 +18,9 @@ local M = {
     background = "<leader>ub",
     wrap = "<leader>uw",
   },
+  language = {
+    format = "<leader>lf",
+  }
 }
 
 vim.g.keymaps = M
