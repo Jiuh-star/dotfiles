@@ -52,6 +52,7 @@ return {
         servers = {
           lua_ls = {},
           basedpyright = {},
+          ruff = {},
           -- harper_ls = {
           --   markdown = {
           --     ignore_link_title = true
