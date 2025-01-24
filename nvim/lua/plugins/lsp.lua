@@ -51,7 +51,14 @@ return {
         },
         servers = {
           lua_ls = {},
-          basedpyright = {}
+          basedpyright = {},
+          -- harper_ls = {
+          --   markdown = {
+          --     ignore_link_title = true
+          --   },
+          --   isolateEnglish = false,
+          --   userDictPath = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
+          -- }
         },
       }
     end,
@@ -95,7 +102,7 @@ return {
     },
   },
 
-  -- dev for NeoVim
+  -- developing for NeoVim
   {
     "folke/lazydev.nvim",
     dependencies = {
