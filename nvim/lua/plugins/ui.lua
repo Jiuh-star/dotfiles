@@ -1,5 +1,18 @@
 return {
-  { "akinsho/bufferline.nvim" },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    event = "VeryLazy",
+    opts = {
+      ---@type bufferline.Options
+      options = {
+        indicator = { style = "icon" },
+        diagnostics = "nvim_lsp",
+        auto_toggle_bufferline = true,
+        always_show_bufferline = false,
+      }
+    }
+   },
 
   {
     "echasnovski/mini.icons",
@@ -70,6 +83,12 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "VeryLazy",
+    opts = {}
+  },
+
+  {
+    "Bekaboo/dropbar.nvim",
     event = "VeryLazy",
     opts = {}
   }
