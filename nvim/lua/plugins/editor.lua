@@ -6,6 +6,8 @@ return {
     opts = {},
     config = function(_, opts)
       local gitsigns = require("gitsigns")
+      local wk = require("which-key")
+
       gitsigns.setup(opts)
 
       Snacks.toggle.new({
@@ -18,6 +20,8 @@ return {
           gitsigns.toggle_current_line_blame(value)
         end,
       }):map(vim.g.keymaps.git.blame_line)
+
+      wk.add({ vim.g.keymaps.git.hunk_inline, gitsigns.preview_hunk_inline, desc = "Hunk Inline" })
     end,
   },
 
@@ -31,7 +35,7 @@ return {
         mode = { "n", "v" },
         { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
-        { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } }
+        { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
       }
     },
   },
