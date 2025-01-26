@@ -2,18 +2,19 @@ return {
   -- formatters
   {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" },
+    event = { "BufWritePre", "VeryLazy" },
     cmd = { "ConformInfo", "Format" },
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "ruff_format" },
+        ["*"] = { "trim_whitespace" },
       },
       default_format_opts = {
         lsp_format = "fallback"
-      }
+      },
     },
     config = function(_, opts)
       local conform = require("conform")
@@ -32,7 +33,7 @@ return {
         conform.format({ async = true, lsp_format = "fallback", range = range })
       end, { range = true })
 
-      wk.add({ keymaps.format, "Format", desc = "Format Buffer", icon = "󰉢 " })
+      wk.add({ keymaps.format, "<cmd>Format<cr>", desc = "Format Buffer", icon = "󰉢 " })
 
       require("conform").setup(opts)
     end
@@ -129,5 +130,5 @@ return {
       }):map("<leader>uc")
       return opts or {}
     end,
-  }
+  },
 }
