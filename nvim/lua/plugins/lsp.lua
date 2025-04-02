@@ -107,7 +107,8 @@ return {
   {
     "folke/lazydev.nvim",
     dependencies = {
-      "LelouchHe/xmake-luals-addon",
+      { "LelouchHe/xmake-luals-addon", lazy = true },
+      { "gonstoll/wezterm-types", lazy = true },
     },
     ft = "lua",
     cmd = "LazyDev",
@@ -120,7 +121,7 @@ return {
         "conform.nvim",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { "xmake-luals-addon/library", file = { "xmake.lua"} },
-        { "gonstoll/wezterm-types", file = { ".wezterm.lua" } },
+        { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
   },
