@@ -6,7 +6,7 @@ return {
     ---@type snacks.Config
     opts = {
       bigfile = { enabled = true },
-      quickfile = { enabled = false },  -- it load treesitter too early.
+      quickfile = { enabled = true },
       animate = { enabled = true },
       scroll = { enabled = true },
       indent = {
