@@ -35,6 +35,7 @@ return {
           toggle.line_number():map(keymaps.ui.line_number)
           toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(keymaps.ui.background)
           toggle.option("wrap", { name = "Wrap line" }):map(keymaps.ui.wrap)
+          toggle.scroll():map(keymaps.ui.scroll)
 
           wk.add({ keymaps.git.lazygit, function() Snacks.lazygit() end, desc = "LazyGit", icon = " " })
 

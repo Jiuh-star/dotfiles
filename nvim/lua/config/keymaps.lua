@@ -18,6 +18,7 @@ local M = {
     line_number = "<leader>ul",
     background = "<leader>ub",
     wrap = "<leader>uw",
+    scroll = "<leader>us"
   },
   language = {
     format = "<leader>lf",
