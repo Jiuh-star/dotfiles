@@ -16,7 +16,7 @@ config.font = wezterm.font_with_fallback {
     'Monospace',
     'Sarasa Fixed SC',  -- CJK font
 }
-config.font_size = 10
+config.font_size = 12
 -- Default cursor style in interactive shell
 config.default_cursor_style = 'BlinkingBlock'
 -- Hide window bar but enable window resizing
