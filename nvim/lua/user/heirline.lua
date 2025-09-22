@@ -301,7 +301,7 @@ M.lsp = bubble({
 
     for _, server in ipairs(servers) do
       if server.name == "copilot" then
-        vim.notify(icons.copilot .. " Copilot is actived", vim.log.levels.INFO)
+        -- vim.notify(icons.copilot .. " Copilot is actived", vim.log.levels.INFO)
         -- if only copilot is active, show only copilot
         if #servers > 1 then
           self.copilot_icon = true
