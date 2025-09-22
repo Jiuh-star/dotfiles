@@ -11,7 +11,9 @@ end
 _G.p = function(...)
   require("snacks.debug").profile(...)
 end
-vim.print = _G.dd
+vim._print = function(_, ...)
+  dd(...)
+end
 
 require("config.options")
 require("config.keymaps")
@@ -24,3 +26,5 @@ require("config.lazy").load({
     require = false,
   },
 })
+
+require("config.neovide")

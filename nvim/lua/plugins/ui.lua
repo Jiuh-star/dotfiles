@@ -58,6 +58,12 @@ return {
     ---@type CatppuccinOptions
     opts = {
       transparent_background = false,
+      float = {
+        transparent = false,
+        solid = false
+      },
+      term_colors = true,
+      auto_integrations = true,
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)

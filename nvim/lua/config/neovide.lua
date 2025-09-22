@@ -1,0 +1,100 @@
+if not vim.g.neovide then
+  return
+end
+
+-- font
+vim.o.guifont = "Hack Nerd Font:h12"
+
+-- dynamic scaling
+vim.g.neovide_scale_factor = 1.0
+local change_scale_factor = function(delta)
+  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
+end
+vim.keymap.set("n", "<C-=>", function()
+  change_scale_factor(0.1)
+end)
+vim.keymap.set("n", "<C-->", function()
+  change_scale_factor(-0.1)
+end)
+vim.keymap.set("n", "<C-0>", function()
+  vim.g.neovide_scale_factor = 1.0
+end)
+
+-- padding
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_left = 0
+vim.g.neovide_padding_right = 0
+
+-- dynamic colorscheme
+vim.g.neovide_theme = "auto"
+
+-- title bar
+vim.g.neovide_title_background_color =
+  string.format("%x", vim.api.nvim_get_hl(0, { id = vim.api.nvim_get_hl_id_by_name("Normal") }).bg)
+
+vim.g.neovide_title_text_color =
+  string.format("%x", vim.api.nvim_get_hl(0, { id = vim.api.nvim_get_hl_id_by_name("Normal") }).fg)
+
+-- floating
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0
+
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_z_height = 10
+vim.g.neovide_light_angle_degrees = 45
+vim.g.neovide_light_radius = 5
+
+vim.g.neovide_floating_corner_radius = 0.5
+vim.g.neovide_experimental_layer_grouping = true
+
+-- transparency
+vim.g.neovide_opacity = 1
+vim.g.neovide_normal_opacity = 1
+local change_opacity = function(delta)
+  vim.g.neovide_opacity = math.min(math.max(vim.g.neovide_opacity + delta, 0.1), 1)
+  vim.g.neovide_normal_opacity = vim.g.neovide_opacity
+end
+vim.keymap.set({ "n", "v", "o" }, "<M-]>", function()
+  change_opacity(0.05)
+end)
+vim.keymap.set({ "n", "v", "o" }, "<M-[>", function()
+  change_opacity(-0.05)
+end)
+
+-- animations
+vim.g.neovide_position_animation_length = 0.15
+vim.g.neovide_scroll_animation_length = 0.3
+vim.g.neovide_scroll_animation_far_lines = 1
+
+-- misc
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_refresh_rate_idle = 5
+vim.g.neovide_confirm_quit = true
+vim.api.nvim_create_user_command("Neovide", function(opts)
+  local arg = opts.args:lower()
+  if arg == "profile" then
+    vim.g.neovide_profiler = not vim.g.neovide_profiler
+  elseif arg == "fullscreen" then
+    vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+  else
+    print("Unknown argument: " .. opts.args)
+  end
+end, {
+  nargs = 1,
+  complete = function()
+    return { "fullscreen", "profile" }
+  end,
+  desc = "Toggle Neovide features",
+})
+
+-- cursor
+vim.g.neovide_cursor_smooth_blink = true
+vim.g.neovide_cursor_animation_length = 0.150
+vim.g.neovide_cursor_short_animation_length = 0.04
+vim.g.neovide_cursor_trail_size = 1.0
+vim.g.neovide_cursor_antialiasing = true
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_cursor_animate_command_line = true
+vim.g.neovide_cursor_unfocused_outline_width = 0.125
+vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait300-blinkoff200-blinkon1000"

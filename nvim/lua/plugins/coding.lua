@@ -10,10 +10,10 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
-        ["*"] = { "trim_whitespace" },
+        ["-"] = { "trim_whitespace" },
       },
       default_format_opts = {
-        lsp_format = "fallback"
+        lsp_format = "fallback",
       },
     },
     config = function(_, opts)
@@ -36,7 +36,7 @@ return {
       wk.add({ keymaps.format, "<cmd>Format<cr>", desc = "Format Buffer", icon = "󰉢 " })
 
       require("conform").setup(opts)
-    end
+    end,
   },
 
   --treesitter
@@ -90,7 +90,7 @@ return {
     ---@param opts TSConfig
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-    end
+    end,
   },
 
   {
@@ -98,21 +98,23 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = function(_, opts)
-      Snacks.toggle.new({
-        id = "treesitter-context",
-        name = "Treesitter Context",
-        get = function()
-          return require("treesitter-context").enabled()
-        end,
-        set = function(state)
-          local context = require("treesitter-context")
-          if state then
-            context.enable()
-          else
-            context.disable()
-          end
-        end,
-      }):map("<leader>uc")
+      Snacks.toggle
+        .new({
+          id = "treesitter-context",
+          name = "Treesitter Context",
+          get = function()
+            return require("treesitter-context").enabled()
+          end,
+          set = function(state)
+            local context = require("treesitter-context")
+            if state then
+              context.enable()
+            else
+              context.disable()
+            end
+          end,
+        })
+        :map("<leader>uc")
       return opts or {}
     end,
   },

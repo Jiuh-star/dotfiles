@@ -64,8 +64,6 @@ return {
       }
     end,
     config = function(_, opts)
-      local lspconfig = require("lspconfig")
-
       -- diagnostics
       for severity, icon in pairs(opts.diagnostics.signs.text) do
         local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
@@ -78,7 +76,7 @@ return {
       -- lsp
       for server, config in pairs(opts.servers) do
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        lspconfig[server].setup(config)
+        vim.lsp.config(server, config)
       end
     end,
   },
