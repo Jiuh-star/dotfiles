@@ -132,6 +132,6 @@ return {
         return
       end
       TS.setup(opts)
-    end
+    end,
   },
 }
