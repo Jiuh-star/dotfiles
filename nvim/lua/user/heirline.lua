@@ -222,7 +222,7 @@ M.file = bubble({
   end,
 
   provider = function(self)
-    if vim.bo.filetype == "help" then
+    if vim.bo.filetype == "help" or vim.bo.buftype == "terminal" then
       return vim.fn.fnamemodify(self.filename, ":t")
     end
 
