@@ -45,11 +45,7 @@ return {
     branch = "main",
     version = false,
     build = ":TSUpdate",
-    -- lazy = vim.fn.argc(-1) == 0,
-    init = function(plugin)
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
+    lazy = false,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     event = "VeryLazy",
     ---@type TSConfig
@@ -88,10 +84,6 @@ return {
         -- "comment",
       },
     },
-    ---@param opts TSConfig
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
   },
 
   {
