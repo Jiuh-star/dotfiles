@@ -110,20 +110,5 @@ return {
         :map("<leader>uc")
       return opts or {}
     end,
-  },
-
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    branch = "main",
-    event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      local TS = require("nvim-treesitter.configs")
-      if not TS.setup then
-        vim.notify("Please use `:Lazy` and update `nvim-treesitter`", vim.log.levels.ERROR)
-        return
-      end
-      TS.setup(opts)
-    end,
-  },
+  }
 }
