@@ -22,9 +22,7 @@ M.setup_colors = function()
 end
 
 local get_hl = function(self, hl)
-  if type(hl) == "function" then
-    return hl(self)
-  end
+  if type(hl) == "function" then return hl(self) end
   return hl
 end
 
@@ -49,24 +47,18 @@ local bubble = function(component)
       provider = "",
       hl = function(self)
         local hl = get_hl(self, component.hl)
-        if hl then
-          return { fg = hl.fg, bg = "none" }
-        end
+        if hl then return { fg = hl.fg, bg = "none" } end
       end,
     },
     -- icon
     {
       provider = function(self)
-        if type(component.icon) == "function" then
-          return component.icon(self) .. " "
-        end
+        if type(component.icon) == "function" then return component.icon(self) .. " " end
         return component.icon .. " "
       end,
       hl = function(self)
         local hl = get_hl(self, component.hl)
-        if hl then
-          return { fg = "base", bg = hl.fg }
-        end
+        if hl then return { fg = "base", bg = hl.fg } end
       end,
     },
     -- space
@@ -79,9 +71,7 @@ local bubble = function(component)
       provider = old_provider,
       hl = function(self)
         local hl = get_hl(self, old_hl)
-        if hl then
-          return { fg = hl.fg, bg = "base", bold = hl.bold, italic = hl.italic }
-        end
+        if hl then return { fg = hl.fg, bg = "base", bold = hl.bold, italic = hl.italic } end
       end,
       subcomponents,
     },
@@ -177,15 +167,11 @@ M.mode = bubble({
     },
   },
 
-  init = function(self)
-    self.mode = vim.api.nvim_get_mode().mode
-  end,
+  init = function(self) self.mode = vim.api.nvim_get_mode().mode end,
 
   icon = icons.mode,
 
-  provider = function(self)
-    return self.mode_names[self.mode]
-  end,
+  provider = function(self) return self.mode_names[self.mode] end,
 
   hl = function(self)
     local mode = self.mode:sub(1, 1)
@@ -217,28 +203,18 @@ M.file = bubble({
     end
   end,
 
-  icon = function(self)
-    return self.file_icon or self.default_file_icon
-  end,
+  icon = function(self) return self.file_icon or self.default_file_icon end,
 
   provider = function(self)
-    if vim.bo.filetype == "help" or vim.bo.buftype == "terminal" then
-      return vim.fn.fnamemodify(self.filename, ":t")
-    end
+    if vim.bo.filetype == "help" or vim.bo.buftype == "terminal" then return vim.fn.fnamemodify(self.filename, ":t") end
 
     local filename = vim.fn.fnamemodify(self.filename, ":.")
-    if filename == "" then
-      return "[NO NAME]"
-    end
-    if not conditions.width_percent_below(#filename, 0.25) then
-      filename = vim.fn.pathshorten(filename)
-    end
+    if filename == "" then return "[NO NAME]" end
+    if not conditions.width_percent_below(#filename, 0.25) then filename = vim.fn.pathshorten(filename) end
     return filename
   end,
 
-  hl = function(self)
-    return { fg = self.icon_color or self.default_file_color, bold = vim.bo.modified }
-  end,
+  hl = function(self) return { fg = self.icon_color or self.default_file_color, bold = vim.bo.modified } end,
 
   update = {
     "TextChangedI",
@@ -250,16 +226,12 @@ M.file = bubble({
   },
 
   {
-    condition = function()
-      return vim.bo.modified
-    end,
+    condition = function() return vim.bo.modified end,
     provider = " ",
   },
 
   {
-    condition = function()
-      return not vim.bo.modifiable or vim.bo.readonly
-    end,
+    condition = function() return not vim.bo.modifiable or vim.bo.readonly end,
     provider = "  ",
   },
 })
@@ -267,9 +239,7 @@ M.file = bubble({
 M.git = {
   condition = conditions.is_git_repo,
 
-  init = function(self)
-    self.status_dict = vim.b.gitsigns_status_dict
-  end,
+  init = function(self) self.status_dict = vim.b.gitsigns_status_dict end,
 
   provider = function(self)
     local git_status = self.status_dict
@@ -316,13 +286,9 @@ M.lsp = bubble({
     self.names = names
   end,
 
-  icon = function(self)
-    return self.copilot_icon and icons.copilot or icons.lsp
-  end,
+  icon = function(self) return self.copilot_icon and icons.copilot or icons.lsp end,
 
-  provider = function(self)
-    return table.concat(self.names, " ")
-  end,
+  provider = function(self) return table.concat(self.names, " ") end,
 
   hl = { fg = "green" },
 })
@@ -370,33 +336,25 @@ M.diagnostic = {
   update = { "DiagnosticChanged", "BufEnter" },
 
   {
-    provider = function(self)
-      return self.errors > 0 and (icons.diagnostics_error .. " " .. self.errors .. " ")
-    end,
+    provider = function(self) return self.errors > 0 and (icons.diagnostics_error .. " " .. self.errors .. " ") end,
 
     hl = { fg = "red" },
   },
 
   {
-    provider = function(self)
-      return self.warnings > 0 and (icons.diagnostics_warn .. " " .. self.warnings .. " ")
-    end,
+    provider = function(self) return self.warnings > 0 and (icons.diagnostics_warn .. " " .. self.warnings .. " ") end,
 
     hl = { fg = "yellow" },
   },
 
   {
-    provider = function(self)
-      return self.hints > 0 and (icons.diagnostics_hint .. " " .. self.hints .. " ")
-    end,
+    provider = function(self) return self.hints > 0 and (icons.diagnostics_hint .. " " .. self.hints .. " ") end,
 
     hl = { fg = "blue" },
   },
 
   {
-    provider = function(self)
-      return self.infos > 0 and (icons.diagnostics_info .. " " .. self.infos .. " ")
-    end,
+    provider = function(self) return self.infos > 0 and (icons.diagnostics_info .. " " .. self.infos .. " ") end,
 
     hl = { fg = "green" },
   },
@@ -406,14 +364,10 @@ M.setup = function(opts)
   -- (string) opts.statusline -> (table) actual statusline
   local statusline = utils.clone(global)
   for i, name in ipairs(opts.statusline) do
-    if i ~= 0 then
-      table.insert(statusline, M.space)
-    end
+    if i ~= 0 then table.insert(statusline, M.space) end
 
     local component = M[name]
-    if component then
-      table.insert(statusline, component)
-    end
+    if component then table.insert(statusline, component) end
   end
   opts.statusline = statusline
 
@@ -421,9 +375,7 @@ M.setup = function(opts)
 
   vim.api.nvim_create_augroup("Heirline", { clear = true })
   vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function()
-      utils.on_colorscheme(M.setup_colors)
-    end,
+    callback = function() utils.on_colorscheme(M.setup_colors) end,
     group = "Heirline",
   })
 end

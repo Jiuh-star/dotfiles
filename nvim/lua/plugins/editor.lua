@@ -10,16 +10,14 @@ return {
 
       gitsigns.setup(opts)
 
-      Snacks.toggle.new({
-        id = "gitsigns_blame_line",
-        name = "Blame Line",
-        get = function()
-          return require("gitsigns.config").config.current_line_blame
-        end,
-        set = function(value)
-          gitsigns.toggle_current_line_blame(value)
-        end,
-      }):map(vim.g.keymaps.git.blame_line)
+      Snacks.toggle
+        .new({
+          id = "gitsigns_blame_line",
+          name = "Blame Line",
+          get = function() return require("gitsigns.config").config.current_line_blame end,
+          set = function(value) gitsigns.toggle_current_line_blame(value) end,
+        })
+        :map(vim.g.keymaps.git.blame_line)
 
       wk.add({ vim.g.keymaps.git.hunk_inline, gitsigns.preview_hunk_inline, desc = "Hunk Inline" })
     end,
@@ -36,7 +34,7 @@ return {
         { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
         { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
-      }
+      },
     },
   },
 
@@ -96,7 +94,7 @@ return {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "VeryLazy",
-    opts = {}
+    opts = {},
   },
 
   {
@@ -107,10 +105,26 @@ return {
 
   {
     "nvim-tree/nvim-tree.lua",
-    -- event = "VeryLazy",
+    lazy = false,
     cmd = { "NvimTreeToggle", "NvimTreeOpen" },
     version = "*",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
+  },
+
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+      default_file_explorer = true,
+      columns = {
+        "icon",
+      },
+      delete_to_trash = true,
+      watch_for_changes = true,
+      float = {},
+    },
   },
 }

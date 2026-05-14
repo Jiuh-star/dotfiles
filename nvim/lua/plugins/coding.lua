@@ -10,6 +10,7 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
+        rust = { "rustfmt" },
         ["-"] = { "trim_whitespace" },
       },
       default_format_opts = {
@@ -39,19 +40,20 @@ return {
     end,
   },
 
-  --treesitter
+  -- (deprecated) treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     version = false,
     build = ":TSUpdate",
+    lazy = false,
     -- lazy = vim.fn.argc(-1) == 0,
-    init = function(plugin)
-      require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
-    end,
+    -- init = function(plugin)
+    --   require("lazy.core.loader").add_to_rtp(plugin)
+    --   require("nvim-treesitter.query_predicates")
+    -- end,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
     opts = {
@@ -88,10 +90,6 @@ return {
         -- "comment",
       },
     },
-    ---@param opts TSConfig
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
   },
 
   {
@@ -103,9 +101,7 @@ return {
         .new({
           id = "treesitter-context",
           name = "Treesitter Context",
-          get = function()
-            return require("treesitter-context").enabled()
-          end,
+          get = function() return require("treesitter-context").enabled() end,
           set = function(state)
             local context = require("treesitter-context")
             if state then
@@ -120,8 +116,10 @@ return {
     end,
   },
 
+  -- FIXME: error nvim-treesitter.configs not found
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    enabled = false,
     branch = "main",
     event = "VeryLazy",
     opts = {},

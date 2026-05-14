@@ -49,3 +49,7 @@ g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 g.loaded_node_provider = 0
+
+-- User Configuration for Plugins
+g.border_style = g.neovide and "none" or "rounded"
+

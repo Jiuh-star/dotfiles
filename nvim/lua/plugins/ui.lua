@@ -10,9 +10,9 @@ return {
         diagnostics = "nvim_lsp",
         auto_toggle_bufferline = true,
         always_show_bufferline = false,
-      }
-    }
-   },
+      },
+    },
+  },
 
   {
     "echasnovski/mini.icons",
@@ -60,7 +60,7 @@ return {
       transparent_background = false,
       float = {
         transparent = false,
-        solid = false
+        solid = false,
       },
       term_colors = true,
       auto_integrations = true,
@@ -72,31 +72,29 @@ return {
     end,
   },
 
-  -- unintrusive norifications
   {
-    "j-hui/fidget.nvim",
+    "folke/noice.nvim",
     event = "VeryLazy",
-    priority = 1000,
     opts = {
-      notification = {
-        override_vim_notify = true,
-      }
+      cmdline = {
+        view = "cmdline",
+      },
     },
-    config = function(_, opts)
-      require("fidget").setup(opts)
-    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
   },
 
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     event = "VeryLazy",
-    opts = {}
+    opts = {},
   },
 
   {
     "Bekaboo/dropbar.nvim",
     event = "VeryLazy",
-    opts = {}
-  }
+    opts = {},
+  },
 }

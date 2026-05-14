@@ -15,7 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 local M = {}
 
 ---@param opts LazyConfig
@@ -40,11 +39,11 @@ function M.load(opts)
           "tohtml",
           "tutor",
           "zipPlugin",
-        }
-      }
+        },
+      },
     },
     ui = {
-      border = "rounded"
+      -- border = vim.g.neovide and "none" or "rounded",
     },
     profiling = {
       loader = true,
@@ -56,4 +55,3 @@ function M.load(opts)
 end
 
 return M
-

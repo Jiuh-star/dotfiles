@@ -4,6 +4,14 @@ local M = {
     ui = "<leader>u",
     language = "<leader>l",
   },
+  top = {
+    smart = "<leader><space>",
+    buffer = "<leader>,",
+    grep = "<leader>/",
+    command_history = "<leader>:",
+    notification = "<leader>n",
+    explorer = "<leader>e",
+  },
   git = {
     blame_line = "<leader>gb",
     lazygit = "<leader>gl",
@@ -18,11 +26,11 @@ local M = {
     line_number = "<leader>ul",
     background = "<leader>ub",
     wrap = "<leader>uw",
-    scroll = "<leader>us"
+    scroll = "<leader>us",
   },
   language = {
     format = "<leader>lf",
-  }
+  },
 }
 
 vim.g.keymaps = M
