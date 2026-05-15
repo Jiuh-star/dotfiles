@@ -1,4 +1,5 @@
 return {
+  -- tabline
   {
     "akinsho/bufferline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -14,6 +15,7 @@ return {
     },
   },
 
+  -- icons
   {
     "echasnovski/mini.icons",
     lazy = true,
@@ -29,6 +31,7 @@ return {
     end,
   },
 
+  -- statusline
   {
     "rebelot/heirline.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -50,6 +53,7 @@ return {
     end,
   },
 
+  -- colorscheme
   {
     "catppuccin/nvim",
     lazy = false,
@@ -72,6 +76,7 @@ return {
     end,
   },
 
+  -- better UI widget
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -85,6 +90,7 @@ return {
     },
   },
 
+  -- render TODO / FIXME comments
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -92,6 +98,7 @@ return {
     opts = {},
   },
 
+  -- dropbar
   {
     "Bekaboo/dropbar.nvim",
     event = "VeryLazy",

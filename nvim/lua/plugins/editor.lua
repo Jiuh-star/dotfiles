@@ -1,4 +1,5 @@
 return {
+  -- gitsigns
   {
     "lewis6991/gitsigns.nvim",
     lazy = true,
@@ -23,6 +24,7 @@ return {
     end,
   },
 
+  -- keymaps
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -38,6 +40,7 @@ return {
     },
   },
 
+  -- autocompletion
   {
     "saghen/blink.cmp",
     lazy = true,
@@ -84,12 +87,14 @@ return {
     },
   },
 
+  -- indent detection
   {
     "NMAC427/guess-indent.nvim",
     event = { "VeryLazy", "BufReadPost" },
     opts = {},
   },
 
+  -- fuzzy finder
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -97,34 +102,37 @@ return {
     opts = {},
   },
 
+  -- autopairs
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {},
   },
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    lazy = false,
-    cmd = { "NvimTreeToggle", "NvimTreeOpen" },
-    version = "*",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-  },
+  -- -- file explorer
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   lazy = false,
+  --   cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+  --   version = "*",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   opts = {},
+  -- },
 
-  {
-    "stevearc/oil.nvim",
-    lazy = false,
-    ---@module 'oil'
-    ---@type oil.SetupOpts
-    opts = {
-      default_file_explorer = true,
-      columns = {
-        "icon",
-      },
-      delete_to_trash = true,
-      watch_for_changes = true,
-      float = {},
-    },
-  },
+  -- -- another file explorer
+  -- {
+  --   "stevearc/oil.nvim",
+  --   lazy = false,
+  --   ---@module 'oil'
+  --   ---@type oil.SetupOpts
+  --   opts = {
+  --     default_file_explorer = true,
+  --     columns = {
+  --       "icon",
+  --     },
+  --     delete_to_trash = true,
+  --     watch_for_changes = true,
+  --     float = {},
+  --   },
+  -- },
 }

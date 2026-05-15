@@ -1,4 +1,5 @@
 return {
+  -- lsp
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
@@ -81,6 +82,7 @@ return {
     end,
   },
 
+  -- formatter & lsp manager
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -92,6 +94,7 @@ return {
     },
   },
 
+  -- lspconfig manager
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
