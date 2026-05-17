@@ -23,7 +23,8 @@ return {
       local keymaps = vim.g.keymaps.language
 
       vim.api.nvim_create_user_command("Format", function(args)
-        local range = nil
+        local range = nil  -- format the whole buffer by default
+        -- otherwise, format the selected range
         if args.count ~= -1 then
           local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
           range = {

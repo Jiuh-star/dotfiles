@@ -43,7 +43,7 @@ function M.load(opts)
       },
     },
     ui = {
-      -- border = vim.g.neovide and "none" or "rounded",
+      border = vim.g.border_style
     },
     profiling = {
       loader = true,
