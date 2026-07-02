@@ -1,0 +1,10 @@
+system-native-tabs = true
+
+
+[font]
+normal = ["CaskaydiaMono NFP", "NotoColorEmoji", "Sarasa Fixed SC"]
+size = 12
+
+[font.features]
+"CaskaydiaMono NFP" = ["+calt", "+ss01"]
+
