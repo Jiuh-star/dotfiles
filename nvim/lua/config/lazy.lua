@@ -43,7 +43,7 @@ function M.load(opts)
       },
     },
     ui = {
-      border = vim.g.border_style
+      border = vim.g.border_style,
     },
     profiling = {
       loader = true,

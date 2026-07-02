@@ -1,7 +1,8 @@
 if not vim.g.neovide then return end
 
 -- font
-vim.o.guifont = "CaskaydiaMono Nerd Font:h12"
+-- vim.o.guifont = "CaskaydiaMono_Nerd_Font,Noto_Color_Emoji,Sarasa_Fixed_SC:h12"
+-- 中文 😀 😎
 
 -- dynamic scaling
 vim.g.neovide_scale_factor = 1.0
@@ -83,7 +84,9 @@ end, {
   desc = "Toggle Neovide features",
 })
 
+-- macos only
 vim.g.neovide_highlight_matching_pair = true
+vim.g.neovide_proxy_icon = true
 
 -- cursor
 vim.g.neovide_cursor_smooth_blink = true

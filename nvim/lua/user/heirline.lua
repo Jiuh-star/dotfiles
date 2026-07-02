@@ -244,13 +244,13 @@ M.git = {
   provider = function(self)
     local git_status = self.status_dict
     local added = (git_status.added and git_status.added ~= 0) and (" " .. icons.git_added .. " " .. git_status.added)
-      or ""
+        or ""
     local changed = (git_status.changed and git_status.changed ~= 0)
         and (" " .. icons.git_changed .. " " .. git_status.changed)
-      or ""
+        or ""
     local removed = (git_status.removed and git_status.removed ~= 0)
         and (" " .. icons.git_removed .. " " .. git_status.removed)
-      or ""
+        or ""
     local branch = icons.git_branch .. " " .. git_status.head
 
     return branch .. added .. changed .. removed

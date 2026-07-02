@@ -107,7 +107,7 @@ return {
     "folke/lazydev.nvim",
     dependencies = {
       { "LelouchHe/xmake-luals-addon", lazy = true },
-      { "gonstoll/wezterm-types", lazy = true },
+      { "DrKJeff16/wezterm-types", lazy = true },
     },
     ft = "lua",
     cmd = "LazyDev",
