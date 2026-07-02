@@ -102,7 +102,7 @@ elseif platform.is_linux then
     { label = "Zsh",     args = { "zsh", "-l" } },
   }
 elseif platform.is_mac then
-  config.default_prog = { "zsh", "-l" }
+  config.default_prog = { "zsh", "-l", "-c", "nu -l" }
   launch_menu = {
     { label = "Nushell", args = { "zsh", "-l", "-c", "nu -l" } },
     { label = "Bash",    args = { "bash", "-l" } },
@@ -113,6 +113,8 @@ end
 config.launch_menu = launch_menu
 config.wsl_domains = wsl_domains
 config.unix_domains = unix_domains
+
+config.ssh_domains = wezterm.default_ssh_domains()
 
 local smart_ssh = wezterm.plugin.require "https://github.com/DavidRR-F/smart_ssh.wezterm"
 smart_ssh.apply_to_config(config, {})
