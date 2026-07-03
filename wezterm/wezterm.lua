@@ -86,27 +86,27 @@ local unix_domains = {}
 if platform.is_win then
   config.default_prog = { "nu", "-l" }
   launch_menu = {
-    { label = "Nushell",            args = { "nu", "-l" } },
-    { label = "PowerShell Core",    args = { "pwsh", "-NoLogo" } },
+    { label = "Nushell", args = { "nu", "-l" } },
+    { label = "PowerShell Core", args = { "pwsh", "-NoLogo" } },
     { label = "PowerShell Desktop", args = { "powershell" } },
-    { label = "Command Prompt",     args = { "cmd" } },
-    { label = "Msys2",              args = { "ucrt64.cmd" } },
-    { label = "Bash",               args = { "bash.exe", "-l" } },
+    { label = "Command Prompt", args = { "cmd" } },
+    { label = "Msys2", args = { "ucrt64.cmd" } },
+    { label = "Bash", args = { "bash.exe", "-l" } },
   }
   wsl_domains = {}
 elseif platform.is_linux then
   config.default_prog = { "nu", "-l" }
   launch_menu = {
     { label = "Nushell", args = { "nu", "-l" } },
-    { label = "Bash",    args = { "bash", "-l" } },
-    { label = "Zsh",     args = { "zsh", "-l" } },
+    { label = "Bash", args = { "bash", "-l" } },
+    { label = "Zsh", args = { "zsh", "-l" } },
   }
 elseif platform.is_mac then
   config.default_prog = { "zsh", "-l", "-c", "nu -l" }
   launch_menu = {
     { label = "Nushell", args = { "zsh", "-l", "-c", "nu -l" } },
-    { label = "Bash",    args = { "bash", "-l" } },
-    { label = "Zsh",     args = { "zsh", "-l" } },
+    { label = "Bash", args = { "bash", "-l" } },
+    { label = "Zsh", args = { "zsh", "-l" } },
   }
 end
 
@@ -290,7 +290,7 @@ bar.apply_to_config(config, {
   padding = {
     left = 1,
     right = 1,
-  }
+  },
 })
 
 return config
