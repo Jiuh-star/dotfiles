@@ -23,7 +23,7 @@ return {
       local keymaps = vim.g.keymaps.language
 
       vim.api.nvim_create_user_command("Format", function(args)
-        local range = nil  -- format the whole buffer by default
+        local range = nil -- format the whole buffer by default
         -- otherwise, format the selected range
         if args.count ~= -1 then
           local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
@@ -41,80 +41,12 @@ return {
     end,
   },
 
-  -- -- (deprecated) treesitter
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   branch = "main",
-  --   version = false,
-  --   build = ":TSUpdate",
-  --   lazy = false,
-  --   -- lazy = vim.fn.argc(-1) == 0,
-  --   -- init = function(plugin)
-  --   --   require("lazy.core.loader").add_to_rtp(plugin)
-  --   --   require("nvim-treesitter.query_predicates")
-  --   -- end,
-  --   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-  --   -- event = "VeryLazy",
-  --   ---@type TSConfig
-  --   ---@diagnostic disable-next-line: missing-fields
-  --   opts = {
-  --     highlight = { enable = true },
-  --     indent = { enable = true },
-  --     ensure_installed = {
-  --       "bash",
-  --       "c",
-  --       "diff",
-  --       "html",
-  --       "javascript",
-  --       "jsdoc",
-  --       "json",
-  --       "jsonc",
-  --       "lua",
-  --       "luadoc",
-  --       "luap",
-  --       "markdown",
-  --       "markdown_inline",
-  --       "printf",
-  --       "python",
-  --       "query",
-  --       "regex",
-  --       "toml",
-  --       "vim",
-  --       "xml",
-  --       "yaml",
-  --       "css",
-  --       "http",
-  --       "sql",
-  --       "meson",
-  --       "gitcommit",
-  --       "gitignore",
-  --       -- "comment",
-  --     },
-  --   },
-  -- },
-
-  -- {
-  --   "nvim-treesitter/nvim-treesitter-context",
-  --   event = "VeryLazy",
-  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
-  --   opts = function(_, opts)
-  --     Snacks.toggle
-  --       .new({
-  --         id = "treesitter-context",
-  --         name = "Treesitter Context",
-  --         get = function() return require("treesitter-context").enabled() end,
-  --         set = function(state)
-  --           local context = require("treesitter-context")
-  --           if state then
-  --             context.enable()
-  --           else
-  --             context.disable()
-  --           end
-  --         end,
-  --       })
-  --       :map("<leader>uc")
-  --     return opts or {}
-  --   end,
-  -- },
-  --
+  -- treesitter manager
+  {
+    "romus204/tree-sitter-manager.nvim",
+    cmd = { "TSManager", "TSInstall", "TSUninstall", "TSUpdate" },
+    opts = {
+      auto_install = true
+    }
+  },
 }
