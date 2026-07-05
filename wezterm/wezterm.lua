@@ -92,7 +92,7 @@ if platform.is_win then
   }
   wsl_domains = {}
 elseif platform.is_linux then
-  config.default_prog = { "nu", "-l" }
+  config.default_prog = { "bash", "-l", "-c", "nu -l" }
   launch_menu = {
     { label = "Nushell", args = { "nu", "-l" } },
     { label = "Bash", args = { "bash", "-l" } },
