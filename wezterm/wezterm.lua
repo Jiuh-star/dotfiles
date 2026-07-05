@@ -7,9 +7,6 @@ local wezterm = require "wezterm"
 ---@type Config
 local config = wezterm.config_builder()
 
-local workspace_picker = wezterm.plugin.require "https://github.com/isseii10/workspace-picker.wezterm"
-workspace_picker.apply_to_config(config, {})
-
 -- ============================================================================
 -- 1. Modules & Libraries
 -- ============================================================================
@@ -115,9 +112,6 @@ config.wsl_domains = wsl_domains
 config.unix_domains = unix_domains
 
 config.ssh_domains = wezterm.default_ssh_domains()
-
-local smart_ssh = wezterm.plugin.require "https://github.com/DavidRR-F/smart_ssh.wezterm"
-smart_ssh.apply_to_config(config, {})
 
 -- ============================================================================
 -- 4. Key Bindings
