@@ -99,9 +99,9 @@ elseif platform.is_linux then
     { label = "Zsh", args = { "zsh", "-l" } },
   }
 elseif platform.is_mac then
-  config.default_prog = { "zsh", "-l", "-c", "nu -l" }
+  config.default_prog = { "/bin/zsh", "-l", "-c", "nu -l" }
   launch_menu = {
-    { label = "Nushell", args = { "zsh", "-l", "-c", "nu -l" } },
+    { label = "Nushell", args = { "/bin/zsh", "-l", "-c", "nu -l" } },
     { label = "Bash", args = { "bash", "-l" } },
     { label = "Zsh", args = { "zsh", "-l" } },
   }
