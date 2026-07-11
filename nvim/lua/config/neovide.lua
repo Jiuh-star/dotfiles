@@ -1,4 +1,4 @@
-if not vim.g.neovide then return end
+if not vim.g.neovide or os.getenv("NEOVIDE_UI") then return end
 
 -- font
 -- vim.o.guifont = "CaskaydiaMono_Nerd_Font,Noto_Color_Emoji,Sarasa_Fixed_SC:h12"
