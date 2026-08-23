@@ -68,6 +68,37 @@ return {
       },
       term_colors = true,
       auto_integrations = true,
+      styles = {
+        comments = {},
+        conditionals = { "italic" },
+        loops = { "italic" },
+        functions = {},
+        keywords = { "italic" },
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+      },
+      lsp_styles = {
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
