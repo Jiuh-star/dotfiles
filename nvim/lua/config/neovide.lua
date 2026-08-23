@@ -87,7 +87,7 @@ end, {
 -- macos only
 vim.g.neovide_highlight_matching_pair = true
 vim.g.neovide_proxy_icon = true
-vim.g.neovide_input_macos_option_key_is_meta = 'only_left'
+vim.g.neovide_input_macos_option_key_is_meta = "only_left"
 
 -- cursor
 vim.g.neovide_cursor_smooth_blink = true
