@@ -12,13 +12,13 @@ return {
       gitsigns.setup(opts)
 
       Snacks.toggle
-          .new({
-            id = "gitsigns_blame_line",
-            name = "Blame Line",
-            get = function() return require("gitsigns.config").config.current_line_blame end,
-            set = function(value) gitsigns.toggle_current_line_blame(value) end,
-          })
-          :map(vim.g.keymaps.git.blame_line)
+        .new({
+          id = "gitsigns_blame_line",
+          name = "Blame Line",
+          get = function() return require("gitsigns.config").config.current_line_blame end,
+          set = function(value) gitsigns.toggle_current_line_blame(value) end,
+        })
+        :map(vim.g.keymaps.git.blame_line)
 
       wk.add({ vim.g.keymaps.git.hunk_inline, gitsigns.preview_hunk_inline, desc = "Hunk Inline" })
     end,
@@ -36,6 +36,7 @@ return {
         { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
         { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
+        { vim.g.keymaps.groups.neovim, group = "NeoVim", icon = { icon = " ", color = "purple" } },
       },
     },
   },

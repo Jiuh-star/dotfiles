@@ -1,4 +1,4 @@
-if not vim.g.neovide or os.getenv("NEOVIDE_UI") then return end
+if not vim.g.neovide or vim.env.NEOVIDE_UI then return end
 
 -- font
 -- vim.o.guifont = "CaskaydiaMono_Nerd_Font,Noto_Color_Emoji,Sarasa_Fixed_SC:h12"
@@ -99,9 +99,3 @@ vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_animate_command_line = true
 vim.g.neovide_cursor_unfocused_outline_width = 0.125
 vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait300-blinkoff200-blinkon1000"
-
--- disable snacks scroll in Neovide (conflicts with Neovide's own scroll animation)
-vim.api.nvim_create_autocmd("User", {
-  pattern = "VeryLazy",
-  callback = function() Snacks.scroll.disable() end,
-})

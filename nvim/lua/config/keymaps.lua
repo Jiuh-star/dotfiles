@@ -3,6 +3,7 @@ local M = {
     git = "<leader>g",
     ui = "<leader>u",
     language = "<leader>l",
+    neovim = "<leader>v",
   },
   top = {
     smart = "<leader><space>",

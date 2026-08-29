@@ -9,7 +9,7 @@ return {
       bigfile = { enabled = true },
       quickfile = { enabled = true },
       animate = { enabled = true },
-      scroll = { enabled = true },
+      scroll = { enabled = not (vim.g.neovide or vim.env.NEOVIDE_UI) },
       indent = {
         enabled = true,
         chunk = {
@@ -20,6 +20,7 @@ return {
       dim = { enabled = true },
       gitbrowse = { enabled = true },
       picker = { enabled = true },
+      image = { enabled = true },
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("User", {
