@@ -21,6 +21,11 @@ return {
       gitbrowse = { enabled = true },
       picker = { enabled = true },
       image = { enabled = true },
+      words = { enabled = true },
+    },
+    keys = {
+      { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
+      { "[[", function() Snacks.words.jump(-1, true) end, desc = "Prev Reference", mode = { "n", "t" } },
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("User", {
