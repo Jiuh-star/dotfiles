@@ -109,4 +109,11 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+
+  -- html tag auto close
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    opts = {},
+  },
 }
