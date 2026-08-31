@@ -55,8 +55,8 @@ return {
           wk.add({ keymaps.git.lazygit, function() Snacks.lazygit() end, desc = "LazyGit", icon = " " })
 
           -- top
-          wk.add({ keymaps.top.smart, function() Snacks.picker.smart() end, desc = "Smart Find Files", icon = " " })
-          wk.add({ keymaps.top.buffer, function() Snacks.picker.buffers() end, desc = "Buffers", icon = "﬘ " })
+          wk.add({ keymaps.top.smart, function() Snacks.picker.smart() end, desc = "Smart Find Files", icon = " " })
+          wk.add({ keymaps.top.buffer, function() Snacks.picker.buffers() end, desc = "Buffers", icon = " " })
           wk.add({ keymaps.top.grep, function() Snacks.picker.grep() end, desc = "Grep", icon = " " })
           wk.add({
             keymaps.top.command_history,
@@ -80,13 +80,13 @@ return {
             keymaps.top.scratch,
             function() Snacks.scratch() end,
             desc = "Toggle Scratch Buffer",
-            icon = " ",
+            icon = "󱞁 ",
           })
           wk.add({
             keymaps.top.select_scratch,
             function() Snacks.scratch.select() end,
             desc = "Select Scratch Buffer",
-            icon = "󰉺 ",
+            icon = " ",
           })
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
