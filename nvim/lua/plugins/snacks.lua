@@ -24,6 +24,7 @@ return {
       words = { enabled = true },
       zen = { enabled = true },
       scratch = { enabled = true },
+      statuscolumn = { enabled = true },
     },
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
