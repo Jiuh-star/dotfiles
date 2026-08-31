@@ -32,6 +32,7 @@ local M = {
     scroll = "<leader>us",
     zen = "<leader>uz",
     zoom = "<leader>uZ",
+    colorscheme = "<leader>uc",
   },
   language = {
     format = "<leader>lf",

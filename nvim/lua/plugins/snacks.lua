@@ -25,6 +25,7 @@ return {
       zen = { enabled = true },
       scratch = { enabled = true },
       statuscolumn = { enabled = true },
+      terminal = { enabled = true },
     },
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
@@ -89,6 +90,13 @@ return {
             desc = "Select Scratch Buffer",
             icon = " ",
           })
+          wk.add({
+            keymaps.ui.colorscheme,
+            function() Snacks.picker.colorschemes() end,
+            desc = "Colorscheme",
+            icon = " ",
+          })
+
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
         end,
