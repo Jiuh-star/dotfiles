@@ -12,6 +12,8 @@ local M = {
     command_history = "<leader>:",
     notification = "<leader>n",
     explorer = "<leader>e",
+    scratch = "<leader>.",
+    select_scratch = "<leader>S",
   },
   git = {
     blame_line = "<leader>gb",

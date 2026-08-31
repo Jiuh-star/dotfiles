@@ -5,9 +5,8 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
       vim.wo.cursorline = true
       vim.w.auto_cursorline = nil
     end
-  end
+  end,
 })
-
 
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   callback = function()
@@ -15,7 +14,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
       vim.w.auto_cursorline = true
       vim.wo.cursorline = false
     end
-  end
+  end,
 })
 
 -- Backups
@@ -26,5 +25,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     local backup = vim.fn.fnamemodify(file, ":p:~:h")
     backup = backup:gsub("[/\\]", "%%")
     vim.go.backupext = backup
-  end
+  end,
+})
+
+-- Filetypes
+vim.filetype.add({
+  extension = { caddy = "caddy" },
+  filename = {
+    ["Caddyfile"] = "caddy",
+    ["caddyfile"] = "caddy",
+  },
 })

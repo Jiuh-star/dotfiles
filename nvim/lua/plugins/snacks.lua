@@ -23,6 +23,7 @@ return {
       image = { enabled = true },
       words = { enabled = true },
       zen = { enabled = true },
+      scratch = { enabled = true },
     },
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
@@ -74,6 +75,18 @@ return {
             function() Snacks.picker.explorer() end,
             desc = "File Explorer",
             icon = " ",
+          })
+          wk.add({
+            keymaps.top.scratch,
+            function() Snacks.scratch() end,
+            desc = "Toggle Scratch Buffer",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.top.select_scratch,
+            function() Snacks.scratch.select() end,
+            desc = "Select Scratch Buffer",
+            icon = "󰉺 ",
           })
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
