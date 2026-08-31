@@ -22,6 +22,7 @@ return {
       picker = { enabled = true },
       image = { enabled = true },
       words = { enabled = true },
+      zen = { enabled = true },
     },
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
@@ -46,6 +47,8 @@ return {
             :map(keymaps.ui.background)
           toggle.option("wrap", { name = "Wrap line" }):map(keymaps.ui.wrap)
           toggle.scroll():map(keymaps.ui.scroll)
+          toggle.zen():map(keymaps.ui.zen)
+          toggle.zoom():map(keymaps.ui.zoom)
 
           -- git
           wk.add({ keymaps.git.lazygit, function() Snacks.lazygit() end, desc = "LazyGit", icon = " " })

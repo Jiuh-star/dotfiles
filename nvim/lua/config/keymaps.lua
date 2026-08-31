@@ -28,6 +28,8 @@ local M = {
     background = "<leader>ub",
     wrap = "<leader>uw",
     scroll = "<leader>us",
+    zen = "<leader>uz",
+    zoom = "<leader>uZ",
   },
   language = {
     format = "<leader>lf",
