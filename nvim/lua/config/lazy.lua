@@ -17,9 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 
 local M = {}
 
----@param opts LazyConfig
+---@param opts LazyConfig | nil
 function M.load(opts)
   opts = vim.tbl_deep_extend("force", {
+    debug = false,
     spec = {
       { import = "plugins" },
     },
@@ -46,8 +47,8 @@ function M.load(opts)
       border = vim.g.border_style,
     },
     profiling = {
-      loader = true,
-      require = true,
+      loader = false,
+      require = false,
     },
   }, opts or {})
 

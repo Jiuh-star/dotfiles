@@ -13,12 +13,6 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
-require("config.lazy").load({
-  debug = false,
-  profiling = {
-    loader = false,
-    require = false,
-  },
-})
+require("config.lazy").load()
 
 require("config.neovide")
