@@ -57,11 +57,16 @@ return {
             keymaps.ui.colorscheme,
             function() Snacks.picker.colorschemes() end,
             desc = "Colorscheme",
-            icon = " ",
+            icon = "󰸌 ",
           })
 
           -- git
-          wk.add({ keymaps.git.lazygit, function() Snacks.lazygit() end, desc = "LazyGit", icon = " " })
+          wk.add({
+            keymaps.git.lazygit,
+            function() Snacks.lazygit() end,
+            desc = "LazyGit",
+            icon = "󰂙 ",
+          })
 
           -- top
           wk.add({
@@ -74,13 +79,13 @@ return {
             keymaps.top.buffer,
             function() Snacks.picker.buffers() end,
             desc = "Buffers",
-            icon = " ",
+            icon = " ",
           })
           wk.add({
             keymaps.top.grep,
             function() Snacks.picker.grep() end,
             desc = "Grep",
-            icon = " ",
+            icon = " ",
           })
           wk.add({
             keymaps.top.command_history,
@@ -92,19 +97,19 @@ return {
             keymaps.top.notification,
             function() Snacks.picker.notifications() end,
             desc = "Notification History",
-            icon = "󱅳 ",
+            icon = "󱅴 ",
           })
           wk.add({
             keymaps.top.explorer,
             function() Snacks.picker.explorer() end,
             desc = "File Explorer",
-            icon = " ",
+            icon = " ",
           })
           wk.add({
             keymaps.top.scratch,
             function() Snacks.scratch() end,
             desc = "Toggle Scratch Buffer",
-            icon = "󱞁 ",
+            icon = "󰽉 ",
           })
           wk.add({
             keymaps.top.select_scratch,

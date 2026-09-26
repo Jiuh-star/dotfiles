@@ -20,7 +20,7 @@ return {
         })
         :map(vim.g.keymaps.git.blame_line)
 
-      wk.add({ vim.g.keymaps.git.hunk_inline, gitsigns.preview_hunk_inline, desc = "Hunk Inline" })
+      wk.add({ vim.g.keymaps.git.hunk_inline, gitsigns.preview_hunk_inline, desc = "Hunk Inline", icon = " " })
     end,
   },
 

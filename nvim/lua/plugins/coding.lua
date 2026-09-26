@@ -35,7 +35,7 @@ return {
         conform.format({ async = true, lsp_format = "fallback", range = range })
       end, { range = true })
 
-      wk.add({ keymaps.format, "<cmd>Format<cr>", desc = "Format Buffer", icon = "󰉢 " })
+      wk.add({ keymaps.format, "<cmd>Format<cr>", desc = "Format Buffer", icon = "󰮳 " })
 
       require("conform").setup(opts)
     end,
