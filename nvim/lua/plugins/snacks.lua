@@ -90,11 +90,43 @@ return {
             desc = "Select Scratch Buffer",
             icon = " ",
           })
+
+          -- find
           wk.add({
-            keymaps.ui.colorscheme,
-            function() Snacks.picker.colorschemes() end,
-            desc = "Colorscheme",
-            icon = " ",
+            keymaps.find.buffers,
+            function() Snacks.picker.buffers() end,
+            desc = "Buffers",
+            icon = "󱈇 ",
+          })
+          wk.add({
+            keymaps.find.config,
+            function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+            desc = "Config Files",
+            icon = "󱎱 ",
+          })
+          wk.add({
+            keymaps.find.files,
+            function() Snacks.picker.files() end,
+            desc = "Files",
+            icon = "󰱽 ",
+          })
+          wk.add({
+            keymaps.find.git_files,
+            function() Snacks.picker.git_files() end,
+            desc = "Git Files",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.find.projects,
+            function() Snacks.picker.projects() end,
+            desc = "Projects",
+            icon = "󰥩 ",
+          })
+          wk.add({
+            keymaps.find.recent,
+            function() Snacks.picker.recent() end,
+            desc = "Recent",
+            icon = "󰋚 ",
           })
 
 

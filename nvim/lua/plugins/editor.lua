@@ -26,7 +26,7 @@ return {
 
   -- keymaps
   {
-    "folke/which-key.nvim",
+   "folke/which-key.nvim",
     event = "VeryLazy",
     ---@type wk.Opts
     opts = {
@@ -34,6 +34,7 @@ return {
       spec = {
         mode = { "n", "v" },
         { vim.g.keymaps.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
+        { vim.g.keymaps.groups.find, group = "Find", icon = { icon = "󱁴 ", color = "blue" } },
         { vim.g.keymaps.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
         { vim.g.keymaps.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
         { vim.g.keymaps.groups.neovim, group = "NeoVim", icon = { icon = " ", color = "purple" } },

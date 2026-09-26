@@ -1,5 +1,6 @@
 local M = {
   groups = {
+    find = "<leader>f",
     git = "<leader>g",
     ui = "<leader>u",
     language = "<leader>l",
@@ -14,6 +15,14 @@ local M = {
     explorer = "<leader>e",
     scratch = "<leader>.",
     select_scratch = "<leader>S",
+  },
+  find = {
+    buffers = "<leader>fb",
+    config = "<leader>fc",
+    files = "<leader>ff",
+    git_files = "<leader>fg",
+    projects = "<leader>fp",
+    recent = "<leader>fr",
   },
   git = {
     blame_line = "<leader>gb",
