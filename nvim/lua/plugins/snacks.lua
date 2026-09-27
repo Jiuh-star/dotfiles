@@ -28,6 +28,7 @@ return {
       scratch = { enabled = true },
       statuscolumn = { enabled = true },
       terminal = { enabled = true },
+      scope = { enabled = true },
     },
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
