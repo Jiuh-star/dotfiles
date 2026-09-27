@@ -26,9 +26,15 @@ return {
     recent = "<leader>fr",
   },
   git = {
-    blame_line = "<leader>gb",
-    lazygit = "<leader>gl",
+    blame_line = "<leader>gB",
+    lazygit = "<leader>gL",
     hunk_inline = "<leader>gh",
+    branches = "<leader>gb",
+    log = "<leader>gl",
+    status = "<leader>gs",
+    stash = "<leader>gS",
+    diff = "<leader>gd",
+    log_file = "<leader>gf",
   },
   ui = {
     dim = "<leader>uD",

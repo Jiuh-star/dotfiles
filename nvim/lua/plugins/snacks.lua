@@ -65,13 +65,6 @@ return {
             icon = "󰸌 ",
           })
 
-          -- git
-          wk.add({
-            keymaps.git.lazygit,
-            function() Snacks.lazygit() end,
-            desc = "LazyGit",
-            icon = "󰂙 ",
-          })
 
           -- top
           wk.add({
@@ -159,6 +152,50 @@ return {
             function() Snacks.picker.recent() end,
             desc = "Recent",
             icon = "󰋚 ",
+          })
+
+          -- git
+          wk.add({
+            keymaps.git.lazygit,
+            function() Snacks.lazygit() end,
+            desc = "LazyGit",
+            icon = "󰂙 ",
+          })
+          wk.add({
+            keymaps.git.branches,
+            function() Snacks.picker.git_branches() end,
+            desc = "Branches",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.git.log,
+            function() Snacks.picker.git_log() end,
+            desc = "Log",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.git.status,
+            function() Snacks.picker.git_status() end,
+            desc = "Status",
+            icon = "󱖫 ",
+          })
+          wk.add({
+            keymaps.git.stash,
+            function() Snacks.picker.git_stash() end,
+            desc = "Stash",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.git.diff,
+            function() Snacks.picker.git_diff() end,
+            desc = "Diff",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.git.log_file,
+            function() Snacks.picker.git_log_file() end,
+            desc = "Log File",
+            icon = " ",
           })
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
