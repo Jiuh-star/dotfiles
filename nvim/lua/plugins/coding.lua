@@ -20,7 +20,7 @@ return {
     config = function(_, opts)
       local conform = require("conform")
       local wk = require("which-key")
-      local keymaps = vim.g.keymaps.language
+      local keymaps = require("config.keys").language
 
       vim.api.nvim_create_user_command("Format", function(args)
         local range = nil -- format the whole buffer by default
@@ -46,7 +46,7 @@ return {
     "romus204/tree-sitter-manager.nvim",
     cmd = { "TSManager", "TSInstall", "TSUninstall", "TSUpdate" },
     opts = {
-      auto_install = true
-    }
+      auto_install = true,
+    },
   },
 }

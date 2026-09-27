@@ -44,7 +44,7 @@ function M.load(opts)
       },
     },
     ui = {
-      border = vim.g.border_style,
+      border = "rounded",
     },
     profiling = {
       loader = false,

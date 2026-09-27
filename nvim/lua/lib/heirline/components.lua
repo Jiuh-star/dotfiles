@@ -2,24 +2,7 @@ local M = {}
 
 local utils = require("heirline.utils")
 local conditions = require("heirline.conditions")
-local config = require("user.config")
-local icons = config.icons
-
-M.setup_colors = function()
-  return {
-    base = utils.get_highlight("Tabline").bg,
-    text = utils.get_highlight("StatusLine").fg,
-    subtext = utils.get_highlight("StatusLineNC").fg,
-    red = utils.get_highlight("DiagnosticError").fg,
-    green = utils.get_highlight("String").fg,
-    blue = utils.get_highlight("Function").fg,
-    yellow = utils.get_highlight("healthWarning").fg,
-    gray = utils.get_highlight("Comment").fg,
-    orange = utils.get_highlight("Constant").fg,
-    purple = utils.get_highlight("Statement").fg,
-    pink = utils.get_highlight("Special").fg,
-  }
-end
+local icons = require("config.icons")
 
 local get_hl = function(self, hl)
   if type(hl) == "function" then return hl(self) end
@@ -88,7 +71,7 @@ local bubble = function(component)
 end
 
 -- store global variables
-local global = {
+M.global = {
   hl = function()
     if conditions.is_active() then
       return { fg = "text", bg = "none" }
@@ -244,13 +227,13 @@ M.git = {
   provider = function(self)
     local git_status = self.status_dict
     local added = (git_status.added and git_status.added ~= 0) and (" " .. icons.git_added .. " " .. git_status.added)
-        or ""
+      or ""
     local changed = (git_status.changed and git_status.changed ~= 0)
         and (" " .. icons.git_changed .. " " .. git_status.changed)
-        or ""
+      or ""
     local removed = (git_status.removed and git_status.removed ~= 0)
         and (" " .. icons.git_removed .. " " .. git_status.removed)
-        or ""
+      or ""
     local branch = icons.git_branch .. " " .. git_status.head
 
     return branch .. added .. changed .. removed
@@ -359,25 +342,5 @@ M.diagnostic = {
     hl = { fg = "green" },
   },
 }
-
-M.setup = function(opts)
-  -- (string) opts.statusline -> (table) actual statusline
-  local statusline = utils.clone(global)
-  for i, name in ipairs(opts.statusline) do
-    if i ~= 0 then table.insert(statusline, M.space) end
-
-    local component = M[name]
-    if component then table.insert(statusline, component) end
-  end
-  opts.statusline = statusline
-
-  require("heirline").setup(opts)
-
-  vim.api.nvim_create_augroup("Heirline", { clear = true })
-  vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = function() utils.on_colorscheme(M.setup_colors) end,
-    group = "Heirline",
-  })
-end
 
 return M

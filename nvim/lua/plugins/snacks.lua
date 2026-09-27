@@ -1,3 +1,5 @@
+local has_neovide = vim.g.neovide or vim.env.NEOVIDE_UI
+
 return {
   -- snacks
   {
@@ -9,7 +11,7 @@ return {
       bigfile = { enabled = true },
       quickfile = { enabled = true },
       animate = { enabled = true },
-      scroll = { enabled = not (vim.g.neovide or vim.env.NEOVIDE_UI) },
+      scroll = { enabled = not has_neovide },
       indent = {
         enabled = true,
         chunk = {
@@ -37,13 +39,13 @@ return {
         callback = function()
           local wk = require("which-key")
           local toggle = Snacks.toggle
-          local keymaps = vim.g.keymaps
+          local keymaps = require("config.keys")
 
           -- ui
           toggle.dim():map(keymaps.ui.dim)
           toggle.zen():map(keymaps.ui.zen)
           toggle.zoom():map(keymaps.ui.zoom)
-          toggle.scroll():map(keymaps.ui.scroll)
+          if not has_neovide then toggle.scroll():map(keymaps.ui.scroll) end
           toggle.indent():map(keymaps.ui.indent)
           toggle.treesitter():map(keymaps.ui.treesitter)
           toggle.diagnostics():map(keymaps.ui.diagnostics)
@@ -95,7 +97,7 @@ return {
           })
           wk.add({
             keymaps.top.notification,
-            function() Snacks.picker.notifications() end,
+            function() require("noice").cmd("history") end,
             desc = "Notification History",
             icon = "󱅴 ",
           })

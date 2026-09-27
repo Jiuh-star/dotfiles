@@ -40,17 +40,7 @@ return {
     opts = {
       statusline = { "mode", "file", "git", "align", "encoding", "diagnostic", "lsp", "cursor" },
     },
-    config = function(_, opts)
-      local user = require("user.heirline")
-      local components = {
-        statusline = opts.statusline,
-        opts = {
-          colors = user.setup_colors(),
-        },
-      }
-
-      user.setup(components)
-    end,
+    config = function(_, opts) require("lib.heirline").setup(opts) end,
   },
 
   -- colorscheme

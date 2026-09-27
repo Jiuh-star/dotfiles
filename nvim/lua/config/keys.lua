@@ -1,4 +1,4 @@
-local M = {
+return {
   groups = {
     find = "<leader>f",
     git = "<leader>g",
@@ -47,7 +47,3 @@ local M = {
     format = "<leader>lf",
   },
 }
-
-vim.g.keymaps = M
-
-return M
