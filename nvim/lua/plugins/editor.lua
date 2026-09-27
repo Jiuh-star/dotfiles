@@ -35,6 +35,12 @@ return {
       preset = "helix",
       spec = {
         mode = { "n", "v" },
+        {
+          keys.top.local_keys,
+          function() require("which-key").show({ global = false }) end,
+          desc = "Buffer Local Keymaps",
+          icon = " ",
+        },
         { keys.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { keys.groups.find, group = "Find", icon = { icon = "󱁴 ", color = "blue" } },
         { keys.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },

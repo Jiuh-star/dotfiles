@@ -15,6 +15,7 @@ return {
     explorer = "<leader>e",
     scratch = "<leader>.",
     select_scratch = "<leader>S",
+    local_keys = "<leader>?",
   },
   find = {
     buffers = "<leader>fb",

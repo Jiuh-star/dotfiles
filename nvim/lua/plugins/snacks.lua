@@ -32,6 +32,8 @@ return {
     keys = {
       { "]]", function() Snacks.words.jump(1, true) end, desc = "Next Reference", mode = { "n", "t" } },
       { "[[", function() Snacks.words.jump(-1, true) end, desc = "Prev Reference", mode = { "n", "t" } },
+      { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal" },
+      { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore" },
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd("User", {
