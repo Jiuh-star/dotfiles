@@ -7,9 +7,9 @@ if not (vim.g.neovide or vim.env.NEOVIDE_UI) then return end
 -- dynamic scaling
 vim.g.neovide_scale_factor = 1.0
 local change_scale_factor = function(delta) vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta end
-vim.keymap.set("n", "<C-=>", function() change_scale_factor(0.1) end)
-vim.keymap.set("n", "<C-->", function() change_scale_factor(-0.1) end)
-vim.keymap.set("n", "<C-0>", function() vim.g.neovide_scale_factor = 1.0 end)
+vim.keymap.set("n", "<C-=>", function() change_scale_factor(0.1) end, { desc = "Increase neovide scale factor" })
+vim.keymap.set("n", "<C-->", function() change_scale_factor(-0.1) end, { desc = "Decrease neovide scale factor" })
+vim.keymap.set("n", "<C-0>", function() vim.g.neovide_scale_factor = 1.0 end, { desc = "Resume neovide scale factor"})
 
 -- padding
 vim.g.neovide_padding_top = 0
@@ -51,8 +51,8 @@ local change_opacity = function(delta)
   vim.g.neovide_normal_opacity = math.min(math.max(vim.g.neovide_normal_opacity + delta, 0.1), 1)
   -- vim.g.neovide_normal_opacity = vim.g.neovide_opacity
 end
-vim.keymap.set({ "n", "v", "o" }, "<M-]>", function() change_opacity(0.05) end)
-vim.keymap.set({ "n", "v", "o" }, "<M-[>", function() change_opacity(-0.05) end)
+vim.keymap.set({ "n", "v", "o" }, "<M-]>", function() change_opacity(0.05) end, { desc = "Increase neovide opacity" })
+vim.keymap.set({ "n", "v", "o" }, "<M-[>", function() change_opacity(-0.05) end, { desc = "Decrease neovide opacity" })
 
 -- animations
 vim.g.neovide_position_animation_length = 0.15
