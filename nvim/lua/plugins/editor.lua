@@ -43,6 +43,7 @@ return {
         },
         { keys.groups.ui, group = "UI", icon = { icon = "󰃣 ", color = "cyan" } },
         { keys.groups.find, group = "Find", icon = { icon = "󱁴 ", color = "blue" } },
+        { keys.groups.search, group = "Search", icon = { icon = "󰺮 ", color = "green" } },
         { keys.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
         { keys.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
         { keys.groups.neovim, group = "NeoVim", icon = { icon = " ", color = "purple" } },

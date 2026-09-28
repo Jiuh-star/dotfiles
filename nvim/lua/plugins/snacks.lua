@@ -65,7 +65,6 @@ return {
             icon = "󰸌 ",
           })
 
-
           -- top
           wk.add({
             keymaps.top.smart,
@@ -84,12 +83,6 @@ return {
             function() Snacks.picker.grep() end,
             desc = "Grep",
             icon = " ",
-          })
-          wk.add({
-            keymaps.top.command_history,
-            function() Snacks.picker.command_history() end,
-            desc = "Command History",
-            icon = " ",
           })
           wk.add({
             keymaps.top.notification,
@@ -196,6 +189,141 @@ return {
             function() Snacks.picker.git_log_file() end,
             desc = "Log File",
             icon = " ",
+          })
+
+          -- search
+          wk.add({
+            keymaps.search.lines,
+            function() Snacks.picker.lines() end,
+            desc = "Buffer Lines",
+            icon = "󱩾 ",
+          })
+          wk.add({
+            keymaps.search.grep_buffers,
+            function() Snacks.picker.grep_buffers() end,
+            desc = "Opened Buffers",
+            icon = "󱈇 ",
+          })
+          wk.add({
+            keymaps.search.grep_word,
+            function() Snacks.picker.grep_word() end,
+            desc = "Visual Selection",
+            icon = "󱈅 ",
+            mode = { "n", "x" },
+          })
+          wk.add({
+            keymaps.search.registers,
+            function() Snacks.picker.registers() end,
+            desc = "Registers",
+            icon = "󱘣 ",
+          })
+          wk.add({
+            keymaps.search.search_history,
+            function() Snacks.picker.search_history() end,
+            desc = "Search History",
+            icon = "󰋚 ",
+          })
+          wk.add({
+            keymaps.search.autocmds,
+            function() Snacks.picker.autocmds() end,
+            desc = "Autocmds",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.search.command_history,
+            function() Snacks.picker.command_history() end,
+            desc = "Command History",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.search.commands,
+            function() Snacks.picker.commands() end,
+            desc = "Commands",
+            icon = "󰘳 ",
+          })
+          wk.add({
+            keymaps.search.diagnostics,
+            function() Snacks.picker.diagnostics() end,
+            desc = "Diagnostics",
+            icon = "󰒡 ",
+          })
+          wk.add({
+            keymaps.search.diagnostics_buffer,
+            function() Snacks.picker.diagnostics_buffer() end,
+            desc = "Buffer Diagnostics",
+            icon = "󰒡 ",
+          })
+          wk.add({
+            keymaps.search.help,
+            function() Snacks.picker.help() end,
+            desc = "Help",
+            icon = "󰾚 ",
+          })
+          wk.add({
+            keymaps.search.highlights,
+            function() Snacks.picker.highlights() end,
+            desc = "Highlights",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.search.icons,
+            function() Snacks.picker.icons() end,
+            desc = "Icons",
+            icon = "󰹧 ",
+          })
+          wk.add({
+            keymaps.search.jumps,
+            function() Snacks.picker.jumps() end,
+            desc = "Jumps",
+            icon = "󱋿 ",
+          })
+          wk.add({
+            keymaps.search.keymaps,
+            function() Snacks.picker.keymaps() end,
+            desc = "Keymaps",
+            icon = " ",
+          })
+          wk.add({
+            keymaps.search.loclist,
+            function() Snacks.picker.loclist() end,
+            desc = "Location List",
+            icon = "󰦅 ",
+          })
+          wk.add({
+            keymaps.search.marks,
+            function() Snacks.picker.marks() end,
+            desc = "Marks",
+            icon = "󱤈 ",
+          })
+          wk.add({
+            keymaps.search.man,
+            function() Snacks.picker.man() end,
+            desc = "Man Pages",
+            icon = "󱗖 ",
+          })
+          wk.add({
+            keymaps.search.lazy,
+            function() Snacks.picker.lazy({ formatters = { file = { filename_only = true } } }) end,
+            desc = "Plugin Spec",
+            icon = "󰒲 ",
+          })
+          wk.add({
+            keymaps.search.quickfix,
+            function() Snacks.picker.qflist() end,
+            desc = "Quickfix List",
+            icon = "󰁨 ",
+          })
+          wk.add({
+            keymaps.search.resume,
+            function() Snacks.picker.resume() end,
+            desc = "Resume",
+            icon = "󱇼 ",
+          })
+          wk.add({
+            keymaps.search.undo,
+            function() Snacks.picker.undo() end,
+            desc = "Undo History",
+            icon = "󰕌 ",
           })
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
