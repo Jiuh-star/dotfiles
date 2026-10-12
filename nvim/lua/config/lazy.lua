@@ -50,6 +50,9 @@ function M.load(opts)
       loader = false,
       require = false,
     },
+    rocks = {
+      enabled = false,
+    },
   }, opts or {})
 
   require("lazy").setup(opts)
