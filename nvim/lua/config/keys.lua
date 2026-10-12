@@ -27,7 +27,7 @@ return {
   },
   git = {
     blame_line = "<leader>gB",
-    lazygit = "<leader>gL",
+    lazygit = "<leader>gg",
     hunk_inline = "<leader>gh",
     branches = "<leader>gb",
     log = "<leader>gl",
