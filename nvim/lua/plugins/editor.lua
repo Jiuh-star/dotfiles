@@ -126,4 +126,11 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+
+  -- markdown, typst, latex, html & asciidoc previewer
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- already lazy loaded by markview plugin
+    opts = {},
+  },
 }
