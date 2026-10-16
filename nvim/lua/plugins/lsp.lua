@@ -74,6 +74,15 @@ return {
             filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           },
           vue_ls = { on_init = vue.on_init },
+          tinymist = {
+            cmd = { "tinymist" },
+            filetypes = { "typst" },
+            settings = {
+              formatterMode = "typstyle",
+              exportPdf = "onType",
+              semanticTokens = "disable",
+            },
+          },
           -- harper_ls = {
           --   markdown = {
           --     ignore_link_title = true
@@ -97,7 +106,7 @@ return {
       -- lsp
       for server, config in pairs(opts.servers) do
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        vim.lsp.config(server, config)
+        vim.lsp.config[server] = config
       end
     end,
   },
