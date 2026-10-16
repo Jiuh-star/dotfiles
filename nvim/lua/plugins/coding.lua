@@ -55,6 +55,7 @@ return {
     "chomosuke/typst-preview.nvim",
     ft = { "typst" },
     opts = {
+      port = 9999,  -- static for port forwarding
       dependencies_bin = { tinymist = "tinymist" },
     },
   },
