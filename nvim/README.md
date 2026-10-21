@@ -36,6 +36,7 @@ NeoVim 0.12+, git, tree-sitter CLI, ripgrep、fd, lazygit, ImageMagick, node, Ne
 - `dropbar.nvim` — 面包屑
 - `todo-comments.nvim` — TODO 高亮
 - `which-key.nvim` — 键位提示
+- `nvim-treesitter-context` - 代码上下文
 
 ### 编辑
 
