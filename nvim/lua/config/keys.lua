@@ -77,5 +77,14 @@ return {
   },
   language = {
     format = "<leader>lf",
+    definition = "<leader>ld",
+    declaration = "<leader>lD",
+    reference = "<leader>lr",
+    implementation = "<leader>lI",
+    type_definition = "<leader>ly",
+    incoming_call = "<leader>li",
+    outgoing_call = "<leader>lo",
+    symbol = "<leader>ls",
+    workspace_symbol = "<leader>lS",
   },
 }

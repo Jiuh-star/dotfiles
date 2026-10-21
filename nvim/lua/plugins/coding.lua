@@ -36,6 +36,60 @@ return {
       end, { range = true })
 
       wk.add({ keymaps.format, "<cmd>Format<cr>", desc = "Format Buffer", icon = "󰮳 " })
+      wk.add({
+        keymaps.definition,
+        function() Snacks.picker.lsp_definitions() end,
+        desc = "Goto Definition",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.declaration,
+        function() Snacks.picker.lsp_declarations() end,
+        desc = "Goto Declaration",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.reference,
+        function() Snacks.picker.lsp_references() end,
+        desc = "Goto References",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.implementation,
+        function() Snacks.picker.lsp_implementations() end,
+        desc = "Goto Implementation",
+        icon = "󰊕 ",
+      })
+      wk.add({
+        keymaps.type_definition,
+        function() Snacks.picker.lsp_type_definitions() end,
+        desc = "Goto Type Definition",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.incoming_call,
+        function() Snacks.picker.lsp_incoming_calls() end,
+        desc = "Calls Incoming",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.outgoing_call,
+        function() Snacks.picker.lsp_outgoing_calls() end,
+        desc = "Calls Outgoing",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.symbol,
+        function() Snacks.picker.lsp_symbols() end,
+        desc = "LSP Symbol",
+        icon = " ",
+      })
+      wk.add({
+        keymaps.workspace_symbol,
+        function() Snacks.picker.lsp_workspace_symbols() end,
+        desc = "LSP Workspace Symbol",
+        icon = " ",
+      })
 
       require("conform").setup(opts)
     end,
@@ -55,7 +109,7 @@ return {
     "chomosuke/typst-preview.nvim",
     ft = { "typst" },
     opts = {
-      port = 9999,  -- static for port forwarding
+      port = 9999, -- static for port forwarding
       dependencies_bin = { tinymist = "tinymist" },
     },
   },
