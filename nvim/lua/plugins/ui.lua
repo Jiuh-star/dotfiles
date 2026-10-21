@@ -111,7 +111,7 @@ return {
     },
   },
 
-  -- render TODO / FIXME comments
+  -- render TODO / FIXME / NOTE / PERF / HACK / WARNING comments
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },

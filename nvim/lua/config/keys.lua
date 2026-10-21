@@ -59,6 +59,7 @@ return {
     quickfix = "<leader>sq",
     resume = "<leader>sR",
     undo = "<leader>su",
+    todo = "<leader>st",
   },
   ui = {
     dim = "<leader>uD",

@@ -325,6 +325,13 @@ return {
             desc = "Undo History",
             icon = "󰕌 ",
           })
+          wk.add({
+            keymaps.search.todo,
+            ---@diagnostic disable-next-line: undefined-field
+            function() Snacks.picker.todo_comments() end,
+            desc = "Todo",
+            icon = " ",
+          })
 
           vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
         end,
