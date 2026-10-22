@@ -133,4 +133,11 @@ return {
     lazy = false, -- already lazy loaded by markview plugin
     opts = {},
   },
+
+  -- diffview
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
+    opts = {},
+  }
 }

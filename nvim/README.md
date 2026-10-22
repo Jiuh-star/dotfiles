@@ -44,6 +44,7 @@ NeoVim 0.12+, git, tree-sitter CLI, ripgrep、fd, lazygit, ImageMagick, node, Ne
 - `nvim-autopairs` — 括号配对
 - `nvim-ts-autotag` — HTML 标签自动闭合
 - `guess-indent.nvim` — 缩进探测
+- `diffview.nvim` - 审查变更文件
 
 
 ## 配置
