@@ -86,5 +86,6 @@ return {
     outgoing_call = "<leader>lo",
     symbol = "<leader>ls",
     workspace_symbol = "<leader>lS",
+    annotation = "<leader>la",
   },
 }

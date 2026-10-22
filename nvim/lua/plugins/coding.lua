@@ -113,4 +113,27 @@ return {
       dependencies_bin = { tinymist = "tinymist" },
     },
   },
+
+  -- annotation generation
+  {
+    "danymat/neogen",
+    event = { "BufWritePre", "VeryLazy" },
+    cmd = { "Neogen" },
+    opts = {
+      snippet_engine = "nvim",
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      local keymaps = require("config.keys").language
+
+      wk.add({
+        keymaps.annotation,
+        function() require("neogen").generate() end,
+        desc = "Generate Annotation",
+        icon = "󰷉 ",
+      })
+
+      require("neogen").setup(opts)
+    end,
+  },
 }

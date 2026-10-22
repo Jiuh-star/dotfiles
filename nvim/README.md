@@ -20,6 +20,7 @@ NeoVim 0.12+, git, tree-sitter CLI, ripgrep、fd, lazygit, ImageMagick, node, Ne
 - `blink.cmp` — 补全
 - `copilot.lua` — AI 补全
 - `lazydev.nvim` — lua 补全，添加 wezterm 与 xmake 的类型库
+- `neogen` - 自动注解生成
 
 ### 语法与格式化
 
