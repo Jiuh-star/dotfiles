@@ -87,5 +87,6 @@ return {
     symbol = "<leader>ls",
     workspace_symbol = "<leader>lS",
     annotation = "<leader>la",
+    lint = "<leader>ll",
   },
 }

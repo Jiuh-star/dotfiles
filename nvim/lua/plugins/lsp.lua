@@ -127,6 +127,78 @@ return {
   -- lspconfig manager
   {
     "williamboman/mason-lspconfig.nvim",
+    event = "VeryLazy",
+    dependencies = { "williamboman/mason.nvim" },
+    opts = {
+      automatic_installation = true,
+    },
+  },
+
+  -- linter
+  {
+    "mfussenegger/nvim-lint",
+    event = { "VeryLazy", "BufWritePost", "InsertLeave" },
+    dependencies = { "rshkarin/mason-nvim-lint" },
+    opts = {
+      events = { "BufWritePost", "InsertLeave" },
+      linters_by_ft = {
+        python = { "ruff" },
+        -- ["_"] = { "codespell" },
+      },
+      markers = {},
+    },
+    config = function(_, opts)
+      local lint = require("lint")
+      local wk = require("which-key")
+      local keys = require("config.keys").language
+
+      lint.linters_by_ft = opts.linters_by_ft
+
+      local function find_lint_root(bufnr, markers)
+        local start = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr))
+        if start == "" then return end
+
+        local lsp_root = nil
+
+        for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+          if c.root_dir then lsp_root = vim.fs.normalize(c.root_dir) end
+        end
+
+        for _, path in ipairs(vim.fs.find(markers, { path = start, upward = true })) do
+          local dir = vim.fs.dirname(path)
+          if not lsp_root or vim.fs.relpath(lsp_root, dir) then return dir end
+        end
+
+        return lsp_root
+      end
+
+      local function try_lint()
+        local linters = lint.linters_by_ft[vim.bo.filetype]
+        if not linters or #linters == 0 then return end
+
+        lint.try_lint(linters, {
+          wrap_linter = function(linter)
+            local markers = opts.markers[linter.name] or { ".git" }
+            linter.cwd = find_lint_root(0, markers)
+            return linter
+          end,
+        })
+      end
+
+      vim.api.nvim_create_autocmd(opts.events, { callback = try_lint })
+
+      wk.add({ keys.lint, try_lint, desc = "Lint Current Buffer", icon = "󱝀 " })
+    end,
+  },
+
+  -- lint config manager
+  {
+    "rshkarin/mason-nvim-lint",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-lint",
+    },
     opts = {
       automatic_installation = true,
     },
