@@ -149,18 +149,13 @@ M.mode = bubble({
       t = "red",
     },
   },
-
   init = function(self) self.mode = vim.api.nvim_get_mode().mode end,
-
   icon = icons.mode,
-
   provider = function(self) return self.mode_names[self.mode] end,
-
   hl = function(self)
     local mode = self.mode:sub(1, 1)
     return { fg = self.mode_colors[mode], bold = true }
   end,
-
   update = {
     "ModeChanged",
     pattern = "*:*",
@@ -176,7 +171,6 @@ M.file = bubble({
     default_file_icon = icons.file,
     default_file_color = "purple",
   },
-
   init = function(self)
     self.filename = vim.api.nvim_buf_get_name(0)
     local ext = vim.fn.fnamemodify(self.filename, ":e")
@@ -185,9 +179,7 @@ M.file = bubble({
       self.file_icon, self.icon_color = devicons.get_icon_color(self.filename, ext, { default = true })
     end
   end,
-
   icon = function(self) return self.file_icon or self.default_file_icon end,
-
   provider = function(self)
     if vim.bo.filetype == "help" or vim.bo.buftype == "terminal" then return vim.fn.fnamemodify(self.filename, ":t") end
 
@@ -196,9 +188,7 @@ M.file = bubble({
     if not conditions.width_percent_below(#filename, 0.25) then filename = vim.fn.pathshorten(filename) end
     return filename
   end,
-
   hl = function(self) return { fg = self.icon_color or self.default_file_color, bold = vim.bo.modified } end,
-
   update = {
     "TextChangedI",
     "TextChanged",
@@ -207,12 +197,10 @@ M.file = bubble({
     "BufNewFile",
     "WinEnter",
   },
-
   {
     condition = function() return vim.bo.modified end,
     provider = " ",
   },
-
   {
     condition = function() return not vim.bo.modifiable or vim.bo.readonly end,
     provider = "  ",
@@ -221,9 +209,7 @@ M.file = bubble({
 
 M.git = {
   condition = conditions.is_git_repo,
-
   init = function(self) self.status_dict = vim.b.gitsigns_status_dict end,
-
   provider = function(self)
     local git_status = self.status_dict
     local added = (git_status.added and git_status.added ~= 0) and (" " .. icons.git_added .. " " .. git_status.added)
@@ -238,15 +224,12 @@ M.git = {
 
     return branch .. added .. changed .. removed
   end,
-
   hl = { fg = "subtext" },
 }
 
 M.lsp = bubble({
   condition = conditions.lsp_attached,
-
   update = { "LspAttach", "LspDetach" },
-
   init = function(self)
     local names = {}
     local servers = vim.lsp.get_clients({ bufnr = 0 })
@@ -268,17 +251,13 @@ M.lsp = bubble({
 
     self.names = names
   end,
-
   icon = function(self) return self.copilot_icon and icons.copilot or icons.lsp end,
-
   provider = function(self) return table.concat(self.names, " ") end,
-
   hl = { fg = "green" },
 })
 
 M.cursor = bubble({
   icon = icons.cursor,
-
   provider = function()
     local curr_line = vim.api.nvim_win_get_cursor(0)[1]
     local lines = vim.api.nvim_buf_line_count(0)
@@ -293,7 +272,6 @@ M.cursor = bubble({
 
     return p .. "%%"
   end,
-
   hl = { fg = "yellow" },
 })
 
@@ -302,43 +280,32 @@ M.encoding = {
     local enc = (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc
     return enc:upper()
   end,
-
   hl = { fg = "subtext" },
 }
 
 M.diagnostic = {
   condition = conditions.has_diagnostics,
-
   init = function(self)
     self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
     self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
     self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     self.infos = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
   end,
-
   update = { "DiagnosticChanged", "BufEnter" },
-
   {
     provider = function(self) return self.errors > 0 and (icons.diagnostics_error .. " " .. self.errors .. " ") end,
-
     hl = { fg = "red" },
   },
-
   {
     provider = function(self) return self.warnings > 0 and (icons.diagnostics_warn .. " " .. self.warnings .. " ") end,
-
     hl = { fg = "yellow" },
   },
-
   {
     provider = function(self) return self.hints > 0 and (icons.diagnostics_hint .. " " .. self.hints .. " ") end,
-
     hl = { fg = "blue" },
   },
-
   {
     provider = function(self) return self.infos > 0 and (icons.diagnostics_info .. " " .. self.infos .. " ") end,
-
     hl = { fg = "green" },
   },
 }
