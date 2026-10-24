@@ -5,7 +5,7 @@ return {
     ui = "<leader>u",
     search = "<leader>s",
     language = "<leader>l",
-    neovim = "<leader>v",
+    test = "<leader>t",
   },
   top = {
     smart = "<leader><space>",
@@ -88,5 +88,17 @@ return {
     workspace_symbol = "<leader>lS",
     annotation = "<leader>la",
     lint = "<leader>ll",
+  },
+  test = {
+    attach = "<leader>ta",
+    run_file = "<leader>tt",
+    run_all = "<leader>tT",
+    nearest = "<leader>tr",
+    last = "<leader>tl",
+    summary = "<leader>ts",
+    output = "<leader>to",
+    output_panel = "<leader>tO",
+    stop = "<leader>tq",
+    watch = "<leader>tw",
   },
 }

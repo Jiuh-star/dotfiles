@@ -136,4 +136,92 @@ return {
       require("neogen").setup(opts)
     end,
   },
+
+  -- test suite manager
+  {
+    "nvim-neotest/neotest",
+    event = { "BufWritePre", "VeryLazy" },
+    cmd = { "Neotest" },
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-neotest/neotest-python",
+      "mrcjkb/rustaceanvim",
+    },
+    config = function()
+      local wk = require("which-key")
+      local keys = require("config.keys").test
+      local neotest = require("neotest")
+
+      local opts = {
+        adapters = {
+          require("neotest-python")({
+            dap = { justMyCode = false },
+          }),
+        },
+      }
+
+      wk.add({
+        keys.attach,
+        function() neotest.run.attach() end,
+        desc = "Attach to Test",
+        icon = " ",
+      })
+      wk.add({
+        keys.run_file,
+        function() neotest.run.run(vim.fn.expand("%")) end,
+        desc = "Run File",
+        icon = "󱈬 ",
+      })
+      wk.add({
+        keys.run_all,
+        function() neotest.run.run(vim.uv.cwd()) end,
+        desc = "Run All",
+        icon = "󰚐 ",
+      })
+      wk.add({
+        keys.nearest,
+        function() neotest.run.run() end,
+        desc = "Run Nearest",
+        icon = "󰡕 ",
+      })
+      wk.add({
+        keys.last,
+        function() neotest.run.run_last() end,
+        desc = "Run Last",
+        icon = "󰡕 ",
+      })
+      wk.add({
+        keys.summary,
+        function() neotest.summary.toggle() end,
+        desc = "Summary",
+        icon = " ",
+      })
+      wk.add({
+        keys.output,
+        function() neotest.output.open({ enter = true, auto_close = true }) end,
+        desc = "Show Output",
+        icon = " ",
+      })
+      wk.add({
+        keys.output_panel,
+        function() neotest.output_panel.toggle() end,
+        desc = "Output Panel",
+        icon = "󰺧 ",
+      })
+      wk.add({
+        keys.stop,
+        function() neotest.run.stop() end,
+        desc = "Stop",
+        icon = " ",
+      })
+      wk.add({
+        keys.watch,
+        function() neotest.watch.toggle(vim.fn.expand("%")) end,
+        desc = "Toggle Watch",
+        icon = " ",
+      })
+
+      neotest.setup(opts)
+    end,
+  },
 }

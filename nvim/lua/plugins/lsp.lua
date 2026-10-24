@@ -220,6 +220,7 @@ return {
         "which-key.nvim",
         "bufferline.nvim",
         "conform.nvim",
+        "neotest",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { "xmake-luals-addon/library", file = { "xmake.lua" } },
         { path = "wezterm-types", mods = { "wezterm" } },

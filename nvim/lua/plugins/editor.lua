@@ -46,7 +46,8 @@ return {
         { keys.groups.search, group = "Search", icon = { icon = "󰺮 ", color = "green" } },
         { keys.groups.git, group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
         { keys.groups.language, group = "Language", icon = { icon = "󰅨 ", color = "red" } },
-        { keys.groups.neovim, group = "NeoVim", icon = { icon = " ", color = "purple" } },
+        -- { keys.groups.neovim, group = "NeoVim", icon = { icon = " ", color = "purple" } },
+        { keys.groups.test, group = "Test", icon = { icon = "󰳪 ", color = "yellow" } },
       },
     },
   },
@@ -139,5 +140,5 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
     opts = {},
-  }
+  },
 }
