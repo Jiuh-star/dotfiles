@@ -164,7 +164,7 @@ return {
         keys.attach,
         function() neotest.run.attach() end,
         desc = "Attach to Test",
-        icon = " ",
+        icon = "󰁦 ",
       })
       wk.add({
         keys.run_file,
@@ -218,7 +218,7 @@ return {
         keys.watch,
         function() neotest.watch.toggle(vim.fn.expand("%")) end,
         desc = "Toggle Watch",
-        icon = " ",
+        icon = "󰛐 ",
       })
 
       neotest.setup(opts)
