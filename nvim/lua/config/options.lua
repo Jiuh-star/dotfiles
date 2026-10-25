@@ -44,6 +44,15 @@ opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 o.mousescroll = "ver:1,hor:6"
 o.showmode = false
 
+-- Folding
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+o.foldtext = ""
+o.foldcolumn = "0"
+o.foldlevel = 99
+o.foldlevelstart = 1
+o.foldnestmax = 4
+
 -- Performance
 g.loaded_python3_provider = 0
 g.loaded_perl_provider = 0
