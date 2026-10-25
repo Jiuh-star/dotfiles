@@ -33,8 +33,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 -- floating
-vim.g.neovide_floating_blur_amount_x = 2.0
-vim.g.neovide_floating_blur_amount_y = 2.0
+vim.g.neovide_floating_blur_amount_x = 15
+vim.g.neovide_floating_blur_amount_y = 15
+vim.opt.winblend = 30
+vim.opt.pumblend = 30
 
 vim.g.neovide_floating_shadow = false
 vim.g.neovide_floating_z_height = 10

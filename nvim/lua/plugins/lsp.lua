@@ -221,6 +221,7 @@ return {
         "bufferline.nvim",
         "conform.nvim",
         "neotest",
+        "nvim-treesitter-context",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         { "xmake-luals-addon/library", file = { "xmake.lua" } },
         { path = "wezterm-types", mods = { "wezterm" } },

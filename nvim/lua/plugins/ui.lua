@@ -130,18 +130,18 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
-    config = function()
-      require("treesitter-context").setup({
-        enable = true,
-        max_lines = 0, -- no limit
-        min_window_height = 0, -- no limit
-        line_numbers = true,
-        multiline_threshold = 20,
-        trim_scope = "outer",
-        mode = "cursor",
-        separator = nil,
-        zindex = 20,
-      })
-    end,
+    ---@type TSContext.Config
+    opts = {
+      enable = true,
+      multiwindow = true,
+      line_numbers = false,
+      max_lines = 0, -- no limit
+      min_window_height = 0, -- no limit
+      multiline_threshold = 2,
+      trim_scope = "outer",
+      mode = "cursor",
+      separator = nil,
+      zindex = 20,
+    },
   },
 }
