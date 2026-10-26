@@ -47,11 +47,12 @@ o.showmode = false
 -- Folding
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
-o.foldtext = ""
 o.foldcolumn = "0"
 o.foldlevel = 99
-o.foldlevelstart = 1
+o.foldlevelstart = 0
 o.foldnestmax = 4
+opt.fillchars:append({ fold = " " })
+require("lib.foldtext").setup()
 
 -- Performance
 g.loaded_python3_provider = 0
