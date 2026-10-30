@@ -224,4 +224,15 @@ return {
       neotest.setup(opts)
     end,
   },
+
+  -- split or join blocks of code
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "gm", function() require("treesj").toggle() end, desc = "Split or join blocks of code" },
+    },
+    opts = {
+      use_default_keymaps = false,
+    },
+  },
 }

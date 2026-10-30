@@ -141,4 +141,22 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
     opts = {},
   },
+
+  -- color helper
+  {
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      options = {
+        parsers = {
+          css = true,
+          css_fn = true,
+          tailwind = {
+            enable = true,
+            lsp = true,
+          },
+        },
+      },
+    },
+  },
 }
