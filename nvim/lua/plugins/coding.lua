@@ -235,4 +235,13 @@ return {
       use_default_keymaps = false,
     },
   },
+
+  -- task runner
+  {
+    "stevearc/overseer.nvim",
+    cmd = { "OverseerToggle", "OverseerRun", "OverseerBuild" },
+    ---@module 'overseer'
+    ---@type overseer.SetupOpts
+    opts = {},
+  },
 }
