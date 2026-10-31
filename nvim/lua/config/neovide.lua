@@ -9,7 +9,7 @@ vim.g.neovide_scale_factor = 1.0
 local change_scale_factor = function(delta) vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta end
 vim.keymap.set("n", "<C-=>", function() change_scale_factor(0.1) end, { desc = "Increase neovide scale factor" })
 vim.keymap.set("n", "<C-->", function() change_scale_factor(-0.1) end, { desc = "Decrease neovide scale factor" })
-vim.keymap.set("n", "<C-0>", function() vim.g.neovide_scale_factor = 1.0 end, { desc = "Resume neovide scale factor"})
+vim.keymap.set("n", "<C-0>", function() vim.g.neovide_scale_factor = 1.0 end, { desc = "Resume neovide scale factor" })
 
 -- padding
 vim.g.neovide_padding_top = 0
@@ -101,3 +101,6 @@ vim.g.neovide_cursor_animate_in_insert_mode = true
 vim.g.neovide_cursor_animate_command_line = true
 vim.g.neovide_cursor_unfocused_outline_width = 0.125
 vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait300-blinkoff200-blinkon1000"
+
+-- HACK: Fix for v0.17
+require("vim._core.ui2").enable({})

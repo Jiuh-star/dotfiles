@@ -109,6 +109,18 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
+    config = function(_, opts)
+      -- HACK: Deferr incase of `ext_cmdline` / `ext_messages` warning on Neovide 0.17.1.
+      -- TODO: Remove `noice.nvim` in favor of ui2.
+      if vim.g.neovide then
+        vim.defer_fn(function()
+          require("noice").setup(opts)
+          vim.schedule(function() vim.o.cmdheight = 1 end)
+        end, 200)
+      else
+        require("noice").setup(opts)
+      end
+    end,
   },
 
   -- render TODO / FIXME / NOTE / PERF / HACK / WARNING comments
